@@ -35,4 +35,4 @@ class Proof(models.Model):
     )
 
     def __str__(self):
-        return  self.major.subject + " " + self.major.predicate + " " + self.minor.subject + " " + self.minor.predicate + " " + self.conclusion.subject + " " + self.conclusion.predicate
+        return  self.major.subject + " " + self.major.predicate + "/n" + self.minor.subject + " " + self.minor.predicate + "/n" + self.conclusion.subject + " " + self.conclusion.predicate
