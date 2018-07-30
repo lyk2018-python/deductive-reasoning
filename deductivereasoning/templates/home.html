@@ -3,11 +3,9 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-  {% for proposition in propositions %}
-    <p><a href="{% url 'proposition_detail' proposition.id %}">{{ proposition }}</a></p>
+  {% for conclusion in conclusions %}
+    <p><a href="{% url 'proposition_detail' conclusion.id %}">{{ conclusion }}</a></p>
   {% endfor %}
   <br/>
-  {% for proof in proofs %}
-    <p>{{ proof }}</p>
-  {% endfor %}
+ 
 {% endblock %}
