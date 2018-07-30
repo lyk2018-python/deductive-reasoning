@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from proofs.models import Proposition, Proof
 from .forms import MajorSubmissionForm
+from .typeChecker import *
 
 # Create your views here.
 def home(request):
@@ -12,6 +13,9 @@ def home(request):
 		'proofs': proofs,
 	})
 
+def about(request):
+	return render(request, 'about.html')
+
 def submit(request):
 	form = MajorSubmissionForm()
 
@@ -20,27 +24,33 @@ def submit(request):
 
 		if form.is_valid():
 			major = Proposition.objects.create(
-			is_universal=form.cleaned_data['is_universal_major'],
-			subject=form.cleaned_data['subject_major'],
-			is_affirmative=form.cleaned_data['is_affirmative_major'],
-			predicate=form.cleaned_data['predicate_major'],
+				is_universal=form.cleaned_data['is_universal_major'],
+				subject=form.cleaned_data['subject_major'],
+				is_affirmative=form.cleaned_data['is_affirmative_major'],
+				predicate=form.cleaned_data['predicate_major'],
 			)
+			setPropositionType(major)
 			minor = Proposition.objects.create(
-			is_universal=form.cleaned_data['is_universal_minor'],
-			subject=form.cleaned_data['subject_minor'],
-			is_affirmative=form.cleaned_data['is_affirmative_minor'],
-			predicate=form.cleaned_data['predicate_minor'],
+				is_universal=form.cleaned_data['is_universal_minor'],
+				subject=form.cleaned_data['subject_minor'],
+				is_affirmative=form.cleaned_data['is_affirmative_minor'],
+				predicate=form.cleaned_data['predicate_minor'],
 			)
+			setPropositionType(minor)
 			conclusion = Proposition.objects.create(
-			is_universal=form.cleaned_data['is_universal_conclusion'],
-			subject=form.cleaned_data['subject_conclusion'],
-			is_affirmative=form.cleaned_data['is_affirmative_conclusion'],
-			predicate=form.cleaned_data['predicate_conclusion'],
+				is_universal=form.cleaned_data['is_universal_conclusion'],
+				subject=form.cleaned_data['subject_conclusion'],
+				is_affirmative=form.cleaned_data['is_affirmative_conclusion'],
+				predicate=form.cleaned_data['predicate_conclusion'],
 			)
-			#proof_major = Proof.objects.create(major)
-			#proof_minor = Proof.objects.create(minor)
-			#proof_conclusion = Proof.objects.create(conclusion)
-
-
+			setConclusionType(major,minor,conclusion)
+			major.save()
+			minor.save()
+			conclusion.save()
+			Proof.objects.create(
+				major=major,
+				minor=minor,
+				conclusion=conclusion
+			)
 
 	return render(request ,"submit.html", {'form': form})

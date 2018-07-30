@@ -1,5 +1,6 @@
 from django import forms
 
+
 class MajorSubmissionForm(forms.Form):
     is_universal_major = forms.BooleanField(required=False)
     subject_major = forms.CharField(
