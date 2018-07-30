@@ -1,8 +1,33 @@
-from django.forms import ModelForm
-from django.db.models import fields
-from proofs.models import *
+from django import forms
 
-class MajorSubmissionForm(ModelForm):
-    class Meta:
-        model = Proposition
-        fields = {"is_universal","is_affirmative","subject", "predicate",}
+class MajorSubmissionForm(forms.Form):
+    is_universal_major = forms.BooleanField(required=True)
+    subject_major = forms.CharField(
+        max_length=255,
+        label='Major subject',
+    )
+    is_affirmative_major = forms.BooleanField(required=True)
+    predicate_major = forms.CharField(
+        max_length=255,
+        label='Major predicate',
+    )
+    is_universal_minor = forms.BooleanField(required=True)
+    subject_minor = forms.CharField(
+        max_length=255,
+        label='Major subject',
+    )
+    is_affirmative_minor = forms.BooleanField(required=True)
+    predicate_minor = forms.CharField(
+        max_length=255,
+        label='Major predicate',
+    )
+    is_universal_conclusion = forms.BooleanField(required=True)
+    subject_conclusion = forms.CharField(
+        max_length=255,
+        label='Major subject',
+    )
+    is_affirmative_conclusion = forms.BooleanField(required=True)
+    predicate_conclusion = forms.CharField(
+        max_length=255,
+        label='Major predicate',
+    )

@@ -1,10 +1,17 @@
 {% extends "base.html" %}
-
 {% block title %}Submit Page{% endblock %}
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit"> Submit </button>
+  <form method="post">
+      {% csrf_token %}
+      <p>Major premise:<br/>
+      Universal{{ form.is_universal_major }}{{ form.subject_major }}
+      Particular{{ form.is_affirmative_major }}{{ form.predicate_major }}</p>
+      <p>Minor premise:<br/>
+      Universal{{ form.is_universal_minor }}{{ form.subject_minor }}
+      Particular{{ form.is_affirmative_minor }}{{ form.predicate_minor }}</p>
+      <p>Conclusion:<br/>
+      Universal{{ form.is_universal_conclusion }}{{ form.subject_conclusion }}
+      Particular{{ form.is_affirmative_conclusion }}{{ form.predicate_conclusion }}</p>
+      <button type="submit"> Submit </button>
   </form>
-  {% endblock %}
+{% endblock %}
