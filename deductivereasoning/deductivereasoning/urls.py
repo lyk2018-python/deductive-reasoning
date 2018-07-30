@@ -22,6 +22,7 @@ urlpatterns = [
 	path('', proof_views.home, name='home'),
     path('admin/', admin.site.urls),
     path('submit/', proof_views.submit, name='submit'),
+    path('proposition/<int:id>/', proof_views.proposition_detail, name='proposition_detail'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', account_views.signup, name='signup'),
     path('accounts/profile/', account_views.dashboard, name='dashboard'),

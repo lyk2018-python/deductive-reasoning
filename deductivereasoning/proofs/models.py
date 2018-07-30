@@ -1,6 +1,19 @@
 from django.db import models
 
 
+
+def universal(universal):
+    if universal == True:
+        return "All"
+    else:
+        return "Some"
+
+def affirmative(affirmative):
+    if affirmative == True:
+        return "Are"
+    else:
+        return "Are not"
+
 class Proposition(models.Model):
     """
 
@@ -12,7 +25,7 @@ class Proposition(models.Model):
     type = models.CharField(max_length=5,default="",blank=True)
 
     def __str__(self):
-        return  str(self.is_universal) + " " + self.subject + " " + str(self.is_affirmative) + " " + self.predicate
+        return universal(self.is_universal) + " " + self.subject + " " + affirmative(self.is_affirmative) + " " + self.predicate
 
 class Proof(models.Model):
     """
@@ -36,4 +49,7 @@ class Proof(models.Model):
     type = models.CharField(max_length=5,default="")
 
     def __str__(self):
-        return  self.major.subject + " " + self.major.predicate + "/n" + self.minor.subject + " " + self.minor.predicate + "/n" + self.conclusion.subject + " " + self.conclusion.predicate
+        return  (universal(self.major.is_universal)+ " " + self.major.subject + " " + affirmative(self.major.is_affirmative) + " " + self.major.predicate + "___" 
+            + universal(self.minor.is_universal)+ " " + self.minor.subject + " " + affirmative(self.minor.is_affirmative) + " " + self.minor.predicate + "___" 
+            + universal(self.conclusion.is_universal)+ " " + self.conclusion.subject + " " + affirmative(self.conclusion.is_affirmative) + " " + self.conclusion.predicate)
+
