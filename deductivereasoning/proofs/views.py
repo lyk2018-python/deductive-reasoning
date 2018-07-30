@@ -14,6 +14,7 @@ def home(request):
 
 def submit(request):
 	form = MajorSubmissionForm()
-	
+	return render(request, 'submit.html', {'form': form})
 
-	return render(request ,"submit.html", {'form': form})
+def about(request):
+	return render(request, 'about.html')
