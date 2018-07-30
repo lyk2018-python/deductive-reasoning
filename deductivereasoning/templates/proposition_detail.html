@@ -2,14 +2,8 @@
 
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-	<h1>{{ node.name }}</h1>
     {% for connection in major %}
       <h5>{{ connection }}</h5>
     {% endfor %}
-    {% for connection2 in minor %}
-      <h5>{{ connection2 }}</h5>
-    {% endfor %}
-    {% for connection3 in conclusion %}
-      <h5>{{ connection3 }}</h5>
-    {% endfor %}
+
 {% endblock %}
