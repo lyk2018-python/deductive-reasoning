@@ -12,8 +12,23 @@ def home(request):
 		'proofs': proofs,
 	})
 
+def proposition_detail(request, id):
+	proposition = Proposition.objects.get(id=id)
+	major = proposition.major.all()
+	minor = proposition.minor.all()
+	conclusion = proposition.conclusion.all()
+	return render(request, 'proposition_detail.html', {
+		'proposition': proposition,
+		'major': major,
+		'minor': minor,
+		'conclusion': conclusion,
+		'title': 'Önerme',
+	})
+
+
 def submit(request):
 	form = MajorSubmissionForm()
-	
+	if request.method == "POST":
+		form = SubmissionForm(request.POST)
 
 	return render(request ,"submit.html", {'form': form})

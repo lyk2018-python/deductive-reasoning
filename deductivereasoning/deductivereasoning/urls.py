@@ -20,5 +20,6 @@ from proofs import views as proof_views
 urlpatterns = [
 	path('', proof_views.home, name='home'),
     path('admin/', admin.site.urls),
-    path('submit/', proof_views.submit, name='submit')
+    path('submit/', proof_views.submit, name='submit'),
+    path('proposition/<int:id>/', proof_views.proposition_detail, name='proposition_detail'),
 ]
