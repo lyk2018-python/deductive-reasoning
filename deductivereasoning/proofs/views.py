@@ -1,20 +1,37 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from proofs.models import Proposition, Proof
 from .forms import MajorSubmissionForm
 from .typeChecker import *
+from django.urls import reverse
 
-# Create your views here.
+
 def home(request):
-	propositions = Proposition.objects.all()
-	proofs = Proof.objects.all()
+	concobj = []
+	conclusions = Proof.objects.all()
+	for obj in conclusions:
+		concobj.append(obj.conclusion)
 	return render(request, 'home.html', {
 		'title': 'Tümden Gelim',
-		'propositions': propositions,
-		'proofs': proofs,
+		'conclusions': concobj,
 	})
 
 def about(request):
 	return render(request, 'about.html')
+
+def submit(request):
+	form = MajorSubmissionForm()
+
+def proposition_detail(request, id):
+	proofs = Proposition.objects.get(id=id).conclusion.all()[0]
+	conclusion = proofs.conclusion
+	major = proofs.major
+	minor = proofs.minor
+	return render(request, 'proposition_detail.html', {
+		'major': major,
+		'minor': minor,
+		'conclusion': conclusion,
+		'title': 'Önerme',
+	})
 
 def submit(request):
 	form = MajorSubmissionForm()
@@ -52,5 +69,6 @@ def submit(request):
 				minor=minor,
 				conclusion=conclusion
 			)
+			return redirect(reverse("proposition_detail", args=[conclusion.id]))
 
 	return render(request ,"submit.html", {'form': form})
