@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from proofs.models import Proposition, Proof
-from .forms import MajorSubmissionForm 
+from .forms import MajorSubmissionForm
+from .typeChecker import *
+from django.urls import reverse
 
-# Create your views here.
+
 def home(request):
 	concobj = []
 	conclusions = Proof.objects.all()
@@ -12,6 +14,12 @@ def home(request):
 		'title': 'Tümden Gelim',
 		'conclusions': concobj,
 	})
+
+def about(request):
+	return render(request, 'about.html')
+
+def submit(request):
+	form = MajorSubmissionForm()
 
 def proposition_detail(request, id):
 	proofs = Proposition.objects.get(id=id).conclusion.all()[0]
@@ -25,13 +33,42 @@ def proposition_detail(request, id):
 		'title': 'Önerme',
 	})
 
-
 def submit(request):
 	form = MajorSubmissionForm()
+
 	if request.method == "POST":
-		form = SubmissionForm(request.POST)
+		form = MajorSubmissionForm(request.POST)
 
-	return render(request, 'submit.html', {'form': form})
+		if form.is_valid():
+			major = Proposition.objects.create(
+				is_universal=form.cleaned_data['is_universal_major'],
+				subject=form.cleaned_data['subject_major'],
+				is_affirmative=form.cleaned_data['is_affirmative_major'],
+				predicate=form.cleaned_data['predicate_major'],
+			)
+			setPropositionType(major)
+			minor = Proposition.objects.create(
+				is_universal=form.cleaned_data['is_universal_minor'],
+				subject=form.cleaned_data['subject_minor'],
+				is_affirmative=form.cleaned_data['is_affirmative_minor'],
+				predicate=form.cleaned_data['predicate_minor'],
+			)
+			setPropositionType(minor)
+			conclusion = Proposition.objects.create(
+				is_universal=form.cleaned_data['is_universal_conclusion'],
+				subject=form.cleaned_data['subject_conclusion'],
+				is_affirmative=form.cleaned_data['is_affirmative_conclusion'],
+				predicate=form.cleaned_data['predicate_conclusion'],
+			)
+			setConclusionType(major,minor,conclusion)
+			major.save()
+			minor.save()
+			conclusion.save()
+			Proof.objects.create(
+				major=major,
+				minor=minor,
+				conclusion=conclusion
+			)
+			return redirect(reverse("proposition_detail", args=[conclusion.id]))
 
-def about(request):
-	return render(request, 'about.html')
+	return render(request ,"submit.html", {'form': form})
