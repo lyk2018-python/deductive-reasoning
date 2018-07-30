@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from proofs.models import Proposition, Proof
+from .forms import MajorSubmissionForm 
 
 # Create your views here.
 def home(request):
@@ -10,3 +11,9 @@ def home(request):
 		'propositions': propositions,
 		'proofs': proofs,
 	})
+
+def submit(request):
+	form = MajorSubmissionForm()
+	
+
+	return render(request ,"submit.html", {'form': form})
