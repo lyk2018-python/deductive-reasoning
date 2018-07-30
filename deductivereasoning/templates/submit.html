@@ -1,10 +1,35 @@
 {% extends "base.html" %}
-
 {% block title %}Submit Page{% endblock %}
 {% block content %}
+<<<<<<< HEAD
+  <form method="post">
+      {% csrf_token %}
+      <p>Major premise:<br/>
+      Universal{{ form.is_universal_major }}{{ form.subject_major }}
+      Particular{{ form.is_affirmative_major }}{{ form.predicate_major }}</p>
+      <p>Minor premise:<br/>
+      Universal{{ form.is_universal_minor }}{{ form.subject_minor }}
+      Particular{{ form.is_affirmative_minor }}{{ form.predicate_minor }}</p>
+      <p>Conclusion:<br/>
+      Universal{{ form.is_universal_conclusion }}{{ form.subject_conclusion }}
+      Particular{{ form.is_affirmative_conclusion }}{{ form.predicate_conclusion }}</p>
+      <button type="submit"> Submit </button>
+  </form>
+{% endblock %}
+=======
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <p>Major premise:<br/>
+    Universal{{ form.is_universal_major }}{{ form.subject_major }}
+    Particular{{ form.is_affirmative_major }}{{ form.predicate_major }}</p>
+    <p>Minor premise:<br/>
+    Universal{{ form.is_universal_minor }}{{ form.subject_minor }}
+    Particular{{ form.is_affirmative_minor }}{{ form.predicate_minor }}</p>
+    <p>Conclusion:<br/>
+    Universal{{ form.is_universal_conclusion }}{{ form.subject_conclusion }}
+    Particular{{ form.is_affirmative_conclusion }}{{ form.predicate_conclusion }}</p>
+
     <button type="submit"> Submit </button>
   </form>
   {% endblock %}
+>>>>>>> ed15fc71b3c7657b79472404287945d263bac417
