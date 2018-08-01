@@ -1,0 +1,4 @@
+adium-theme-ubuntu==0.3.4
+gyp==0.1
+unity-lens-photos==1.0
+virtualenv==16.0.0
