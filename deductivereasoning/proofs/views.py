@@ -70,4 +70,5 @@ def submit(request):
 				conclusion=conclusion
 			)
 			return redirect(reverse("proposition_detail", args=[conclusion.id]))
-return render(request ,"submit.html", {'form': form})
+
+	return render(request ,"submit.html", {'form': form})
