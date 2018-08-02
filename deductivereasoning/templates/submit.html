@@ -41,7 +41,8 @@
       <option value="False">Are not</option>
     </select>
   {{ form.predicate_conclusion }}</p> 
-    <button type="submit"> Submit </button>
+    <button type="submit" onclick="this.form.submit(); this.disabled=true; this.value='Sending…'">Submit</button>
+
   </form>
   <script type="text/javascript">
 
