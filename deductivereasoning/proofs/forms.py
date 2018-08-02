@@ -23,9 +23,14 @@ class MajorSubmissionForm(forms.Form):
         label='Major predicate',required=False
     )
     is_universal_conclusion = forms.BooleanField(required=False)
-    subject_conclusion = forms.ChoiceField(
-        label='Major subject',required=False    )
-    is_affirmative_conclusion = forms.BooleanField(required=False)
-    predicate_conclusion = forms.ChoiceField(
-        label='Major predicate',required=False
+    subject_conclusion = forms.CharField(
+        label='Major subject',
+        required=False,
+        widget=forms.Select,
     )
+    is_affirmative_conclusion = forms.BooleanField(required=False)
+    predicate_conclusion = forms.CharField(
+        label='Major predicate',
+        required=False,
+        widget=forms.Select,
+)
