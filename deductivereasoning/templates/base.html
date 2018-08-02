@@ -5,6 +5,11 @@
 <head>
     <meta charset="UTF-8">
     {% block scripts %}
+      <script type="text/javascript">
+    function myfunction(){
+      alert('{{ form.subject_conclusion }}');
+    }
+  </script>
     {% endblock %}
     <title>{% block title %} Default Title {% endblock %}</title>
 </head>
@@ -14,8 +19,10 @@
         <a class="active" href="{% url 'home' %}">Home</a>
         <a href="{% url 'about' %}">About</a>
         {% if user.is_authenticated %}
+        <div class="user">
           Hello {{ user.username }}
-          <a href="{% url 'submit' %}">Submit</a>          
+        </div>
+          <a href="{% url 'submit' %}">Submit</a>
           <a href="{% url 'logout' %}">Logout</a>
         {% else %}
           <a href="{% url 'signup' %}">Signup</a>
@@ -26,6 +33,10 @@
     <div class="content">
         {% block content %}
         {% endblock %}
+    </div>
+
+    <div class="footer">
+      <p>A tool for deductive reasoning. <a href="https://github.com/lyk2018-python/deductive-reasoning">Support</a> us on github.</p>
     </div>
   </div>
 </body>
