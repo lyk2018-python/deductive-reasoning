@@ -18,9 +18,6 @@ def home(request):
 def about(request):
 	return render(request, 'about.html')
 
-def submit(request):
-	form = MajorSubmissionForm()
-
 def proposition_detail(request, id):
 	proofs = Proposition.objects.get(id=id).conclusion.all()[0]
 	conclusion = proofs.conclusion
@@ -70,4 +67,5 @@ def submit(request):
 				conclusion=conclusion
 			)
 			return redirect(reverse("proposition_detail", args=[conclusion.id]))
+
 	return render(request ,"submit.html", {'form': form})
