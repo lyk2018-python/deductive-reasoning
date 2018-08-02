@@ -2,10 +2,20 @@
 
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-<div class="content">
-  <p>{{ major }}</p>
-  <p>{{ minor }}</p>
-  <p>{{ conclusion }}</p>
-</div>
 
+      <div class="content">
+          <p>{{ major }}</p>
+          <p>{{ minor }}</p>
+          <p>{{ conclusion }}</p>
+      </div>
+      <form method="post">
+      {% csrf_token %}
+      <h3>Yorumlar</h3>
+          {% for Comment in Comments %}
+              <p> {{ Comment }} from {{ Comment.user }} on {{ Comment.created_date }} </p>
+      {% endfor %}
+      <h3>Yorum Gönder</h3>
+          {{ form }}
+      <button type="submit"> Submit </button>
+      </form>
 {% endblock %}

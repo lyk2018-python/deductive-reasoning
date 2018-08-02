@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from proofs.models import Proposition, Proof
+from proofs.models import *
 from .forms import MajorSubmissionForm
-from .typeChecker import *
 from django.urls import reverse
-
+from comments.forms import CommentForm
+from comments.models import Comment
 
 def home(request):
 	concobj = []
@@ -23,12 +23,25 @@ def proposition_detail(request, id):
 	conclusion = proofs.conclusion
 	major = proofs.major
 	minor = proofs.minor
+	form = CommentForm()
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			comment.user = request.user
+			comment.modelObject = proofs
+			comment.save()
+			return redirect('home')
+	Comments = Comment.objects.filter(modelObject=proofs)
 	return render(request, 'proposition_detail.html', {
 		'major': major,
 		'minor': minor,
 		'conclusion': conclusion,
 		'title': 'Önerme',
+		'form': form,
+		'Comments': Comments,
 	})
+
 
 def submit(request):
 	form = MajorSubmissionForm()
@@ -42,21 +55,18 @@ def submit(request):
 				is_affirmative=form.cleaned_data['is_affirmative_major'],
 				predicate=form.cleaned_data['predicate_major'],
 			)
-			setPropositionType(major)
 			minor = Proposition.objects.create(
 				is_universal=form.cleaned_data['is_universal_minor'],
 				subject=form.cleaned_data['subject_minor'],
 				is_affirmative=form.cleaned_data['is_affirmative_minor'],
 				predicate=form.cleaned_data['predicate_minor'],
 			)
-			setPropositionType(minor)
 			conclusion = Proposition.objects.create(
 				is_universal=form.cleaned_data['is_universal_conclusion'],
 				subject=form.cleaned_data['subject_conclusion'],
 				is_affirmative=form.cleaned_data['is_affirmative_conclusion'],
 				predicate=form.cleaned_data['predicate_conclusion'],
 			)
-			setConclusionType(major, minor, conclusion)
 			major.save()
 			minor.save()
 			conclusion.save()
