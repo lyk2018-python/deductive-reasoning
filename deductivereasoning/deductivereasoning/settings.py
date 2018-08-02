@@ -15,18 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1$&rn&fh2a))e0h&p2^q6^lvfcr9dxaqnf)1(a_yg%%v@t*30f'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -125,3 +115,19 @@ STATICFILES_DIRS= [
     STATIC_DIR,
 ]
 LOGOUT_REDIRECT_URL = '/'
+
+try:
+    from deductivereasoning.local_settings import *
+except ImportError:
+    print(
+        '''
+        Local settings was not found. Duplicate local_settings.example and
+        rename it to local_settings.py
+        '''
+    )
+except SyntaxError:
+    print(
+        '''
+        Local settings is misconfigured.
+        '''
+    )
