@@ -5,7 +5,7 @@
       {% csrf_token %}
       <p>Major premise:<br/>
       Universal
-      <input type="checkbox" name="is_universal_major" id="id_is_universal_major" /> 
+      <input type="checkbox" name="is_universal_major" id="id_is_universal_major" />
       <input type="text" onchange="getElements()" name="subject_major" maxlength="255" required id="id_subject_major" />
       Particular
       <input type="checkbox" name="is_affirmative_major" id="id_is_affirmative_major" />
@@ -19,7 +19,7 @@
       <input type="text" onchange="getElements()" name="predicate_minor" maxlength="255" required id="id_predicate_minor" /></p>
       <p>Conclusion:<br/>
       Universal{{ form.is_universal_conclusion }}{{ form.subject_conclusion }}
-      Particular{{ form.is_affirmative_conclusion }}{{ form.predicate_conclusion }}</p> 
+      Particular{{ form.is_affirmative_conclusion }}{{ form.predicate_conclusion }}</p>
       <button type="submit"> Submit </button>
   </form>
   <script type="text/javascript">
