@@ -1,11 +1,12 @@
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: #404040;
 }
 
 .topnav a {
@@ -29,4 +30,12 @@ body {
 .container {
   width: 70em;
   margin: auto;
+}
+
+.user {
+  color: #F2F2F2;
+  font-size: 18px;
+  display: inline-block;
+  float: right;
+  margin: 12px 30px;
 }

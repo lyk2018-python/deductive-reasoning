@@ -5,11 +5,6 @@
 <head>
     <meta charset="UTF-8">
     {% block scripts %}
-      <script type="text/javascript">
-    function myfunction(){
-      alert('{{ form.subject_conclusion }}');
-    }
-  </script>
     {% endblock %}
     <title>{% block title %} Default Title {% endblock %}</title>
 </head>
@@ -20,7 +15,7 @@
         <a href="{% url 'about' %}">About</a>
         {% if user.is_authenticated %}
           Hello {{ user.username }}
-          <a href="{% url 'submit' %}">Submit</a>          
+          <a href="{% url 'submit' %}">Submit</a>
           <a href="{% url 'logout' %}">Logout</a>
         {% else %}
           <a href="{% url 'signup' %}">Signup</a>
