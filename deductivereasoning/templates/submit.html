@@ -4,23 +4,23 @@
   <form method="post">
       {% csrf_token %}
       <p>Major argument:<br/>
-      
+
       {{ form.is_universal_major }}
       <input type="text" onchange="getElements()" name="subject_major" maxlength="255" required id="id_subject_major" />
-      
+
       {{ form.is_affirmative_major }}
       <input type="text" onchange="getElements()" name="predicate_major" maxlength="255" required id="id_predicate_major" /></p>
       <p>Minor argument:<br/>
-      
+
       {{ form.is_universal_minor }}
       <input type="text" onchange="getElements()" name="subject_minor" maxlength="255" required id="id_subject_minor" />
-      
+
       {{ form.is_affirmative_minor }}
       <input type="text" onchange="getElements()" name="predicate_minor" maxlength="255" required id="id_predicate_minor" /></p>
       <p>Conclusion:<br/>
       {{ form.is_universal_conclusion }}{{ form.subject_conclusion }}
-      {{ form.is_affirmative_conclusion }}{{ form.predicate_conclusion }}</p> 
-      <button type="submit"> Submit </button>
+      {{ form.is_affirmative_conclusion }}{{ form.predicate_conclusion }}</p>
+      <button type="submit" onclick="this.form.submit(); this.disabled=true; this.value='Sending…'">Submit</button>
   </form>
   <script type="text/javascript">
   function getElements(){
