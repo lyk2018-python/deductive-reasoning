@@ -19,6 +19,7 @@ class MajorSubmissionForm(forms.Form):
     subject_major = forms.CharField(
         max_length=255,
         label='Major subject',
+        required=False
     )
     is_affirmative_major = forms.ChoiceField(
         choices=TRUE_FALSE_CHOICES_AFFIRMATIVE,
@@ -28,7 +29,8 @@ class MajorSubmissionForm(forms.Form):
         )
     predicate_major = forms.CharField(
         max_length=255,
-        label='Major predicate',required=False
+        label='Major predicate',
+        required=False
     )
     is_universal_minor = forms.ChoiceField(
         choices=TRUE_FALSE_CHOICES_UNIVERSAL,
@@ -38,7 +40,8 @@ class MajorSubmissionForm(forms.Form):
     )
     subject_minor = forms.CharField(
         max_length=255,
-        label='Major subject',required=False
+        label='Major subject',
+        required=False
     )
     is_affirmative_minor = forms.ChoiceField(
         choices=TRUE_FALSE_CHOICES_AFFIRMATIVE,
@@ -48,7 +51,8 @@ class MajorSubmissionForm(forms.Form):
     )
     predicate_minor = forms.CharField(
         max_length=255,
-        label='Major predicate',required=False
+        label='Major predicate',
+        required=False
     )
     is_universal_conclusion = forms.ChoiceField(
         choices=TRUE_FALSE_CHOICES_UNIVERSAL,

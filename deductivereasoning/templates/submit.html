@@ -41,12 +41,22 @@
       <option value="False">Are not</option>
     </select>
     <select name="predicate_conclusion" id="id_predicate_conclusion">
-    </select></p> 
-    <button type="submit" onclick="this.form.submit(); this.disabled=true; this.value='Sending…'">Submit</button>
-    <div id="invalidArg">INVALID ARGUMENT</div>
+    </select></p>
+    <div id="invalidArg" class="invalidArgError" style="display:none;">INVALID ARGUMENT</div>
+    <button id="buttonSubmit" type="submit"  class="btnSubmit">Submit</button>
+
+
 
     </form>
   <script type="text/javascript">
+  function convertToJSBoolean(boolToConvert){
+    if (boolToConvert == 'True'){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
   function decideInvalidArgs(){
     var is_universal_major = document.getElementById('id_is_universal_major').value;
     var is_affirmative_major = document.getElementById('id_is_affirmative_major').value
@@ -54,9 +64,82 @@
     var is_affirmative_minor = document.getElementById('id_is_affirmative_minor').value
     var is_universal_conclusion = document.getElementById('id_is_universal_conclusion').value
     var is_affirmative_conclusion = document.getElementById('id_is_affirmative_conclusion').value
-    console.log(is_affirmative_conclusion)
-  }
 
+    var is_universal_majorJS = convertToJSBoolean(is_universal_major)
+    var is_affirmative_majorJS = convertToJSBoolean(is_affirmative_major)
+    var is_universal_minorJS = convertToJSBoolean(is_universal_minor)
+    var is_affirmative_minorJS = convertToJSBoolean(is_affirmative_minor)
+    var is_universal_conclusionJS = convertToJSBoolean(is_universal_conclusion)
+    var is_affirmative_conclusionJS = convertToJSBoolean(is_affirmative_conclusion)
+
+    var majorConclusionType = getConclusionType(is_universal_majorJS, is_affirmative_majorJS)
+    var minorConclusionType = getConclusionType(is_universal_minorJS, is_affirmative_minorJS)
+    var conclusionConclusionType = getConclusionType(is_universal_conclusionJS, is_affirmative_conclusionJS)
+
+    var isValid = isConclusionValid(majorConclusionType, minorConclusionType, conclusionConclusionType)
+    if (isValid) {
+      document.getElementById("invalidArg").style.display = 'none';
+      document.getElementById("buttonSubmit").disabled = false;
+    }
+    else{
+      document.getElementById("invalidArg").style.display = ''; 
+      document.getElementById("buttonSubmit").disabled = true;
+    }
+
+  }
+  function isConclusionValid(major, minor, conclusion){
+    if (major == "A" && minor == "A" && conclusion == "A") {
+      return true
+    }
+    else if (major == "E" && minor == "A" && conclusion == "E"){
+      return true
+    }
+    else if (major == "A" && minor == "I" && conclusion == "I"){
+      return true
+    }
+    else if (major == "E" && minor == "I" && conclusion == "O"){
+      return true
+    }
+    else if (major == "A" && minor == "E" && conclusion == "O"){
+      return true
+    }
+    else if (major == "A" && minor == "O" && conclusion == "O"){
+      return true
+    }
+    else if (major == "O" && minor == "A" && conclusion == "O"){
+      return true
+    }                
+    else if (major == "E" && minor == "A" && conclusion == "O"){
+      return true
+    }
+    else if (major == "A" && minor == "E" && conclusion == "A"){
+      return true
+    }
+    else if (major == "A" && minor == "E" && conclusion == "E"){
+      return true
+    }
+    else if (major == "I" && minor == "A" && conclusion == "I"){
+      return true
+    }
+    else{
+      return false
+    }        
+  }
+  function getConclusionType(universal, affirmative){
+
+    if(universal == true && affirmative == true){
+      return "A"
+    }
+    else if (universal == true && affirmative == false){
+      return "I"
+    }
+    else if (universal == false && affirmative == true){
+      return "E"
+    }
+    else{
+      return "O"
+    }
+  }
   function getElements(){
     var subject_conclusion_select_items = document.getElementById("id_subject_conclusion")
     var predicate_conclusion_select_items = document.getElementById("id_predicate_conclusion")
