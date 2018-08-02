@@ -2,27 +2,51 @@
 {% block title %}Submit Page{% endblock %}
 {% block content %}
   <form method="post">
-      {% csrf_token %}
-      <p>Major premise:<br/>
-      Universal
-      <input type="checkbox" name="is_universal_major" id="id_is_universal_major" />
-      <input type="text" onchange="getElements()" name="subject_major" maxlength="255" required id="id_subject_major" />
-      Particular
-      <input type="checkbox" name="is_affirmative_major" id="id_is_affirmative_major" />
-      <input type="text" onchange="getElements()" name="predicate_major" maxlength="255" required id="id_predicate_major" /></p>
-      <p>Minor premise:<br/>
-      Universal
-      <input type="checkbox" name="is_universal_minor" id="id_is_universal_minor" />
-      <input type="text" onchange="getElements()" name="subject_minor" maxlength="255" required id="id_subject_minor" />
-      Particular
-      <input type="checkbox" name="is_affirmative_minor" id="id_is_affirmative_minor" />
-      <input type="text" onchange="getElements()" name="predicate_minor" maxlength="255" required id="id_predicate_minor" /></p>
-      <p>Conclusion:<br/>
-      Universal{{ form.is_universal_conclusion }}{{ form.subject_conclusion }}
-      Particular{{ form.is_affirmative_conclusion }}{{ form.predicate_conclusion }}</p>
-      <button type="submit"> Submit </button>
+    {% csrf_token %}
+    <p>Major argument:<br/>
+
+    <select name="is_universal_major" id="id_is_universal_major">
+      <option value="True">All</option>
+      <option value="False">Some</option>
+    </select>
+    <input type="text" onchange="getElements()" name="subject_major" maxlength="255" required id="id_subject_major" />
+
+    <select name="is_affirmative_major" id="id_is_affirmative_major">
+      <option value="True">Are</option>
+      <option value="False">Are not</option>
+    </select>
+    <input type="text" onchange="getElements()" name="predicate_major" maxlength="255" required id="id_predicate_major" /></p>
+    <p>Minor argument:<br/>
+
+    <select name="is_universal_minor" id="id_is_universal_minor">
+      <option value="True">All</option>
+      <option value="False">Some</option>
+    </select>
+    <input type="text" onchange="getElements()" name="subject_minor" maxlength="255" required id="id_subject_minor" />
+
+    <select name="is_affirmative_minor" id="id_is_affirmative_minor">
+      <option value="True">Are</option>
+      <option value="False">Are not</option>
+    </select>
+    <input type="text" onchange="getElements()" name="predicate_minor" maxlength="255" required id="id_predicate_minor" /></p>
+    <p>Conclusion:<br/>
+
+    <select name="is_universal_conclusion" id="id_is_universal_conclusion">
+      <option value="True">All</option>
+      <option value="False">Some</option>
+    </select>
+    {{ form.subject_conclusion }}
+    <select name="is_affirmative_conclusion" id="id_is_affirmative_conclusion">
+      <option value="True">Are</option>
+      <option value="False">Are not</option>
+    </select>
+  {{ form.predicate_conclusion }}</p>
+    <button type="submit" onclick="this.form.submit(); this.disabled=true; this.value='Sending…'" class="btnSubmit">Submit</button>
+
   </form>
   <script type="text/javascript">
+
+
   function getElements(){
     var subject_conclusion_select_items = document.getElementById("id_subject_conclusion")
     var predicate_conclusion_select_items = document.getElementById("id_predicate_conclusion")
@@ -33,19 +57,19 @@
     var minor_subject = document.getElementById('id_subject_minor').value
     var minor_predicate = document.getElementById('id_predicate_minor').value
     var subject_conclusion_select_items = document.getElementById("id_subject_conclusion")
-    if(major_subject != null && major_subject != ''){
+    if(major_subject != null && major_subject != '' && subject_conclusion_select_items.innerHTML.indexOf('>'+major_subject+'<') == -1){
       subject_conclusion_select_items.innerHTML += '<option>' + major_subject + '</option>'
       predicate_conclusion_select_items.innerHTML += '<option>' + major_subject + '</option>'
     }
-    if(major_predicate != null && major_predicate != ''){
+    if(major_predicate != null && major_predicate != '' && subject_conclusion_select_items.innerHTML.indexOf('>'+major_predicate+'<') == -1){
       subject_conclusion_select_items.innerHTML += '<option>' + major_predicate + '</option>'
       predicate_conclusion_select_items.innerHTML += '<option>' + major_predicate + '</option>'
     }
-    if(minor_subject != null && minor_subject != ''){
+    if(minor_subject != null && minor_subject != '' && subject_conclusion_select_items.innerHTML.indexOf('>'+minor_subject+'<') == -1){
       subject_conclusion_select_items.innerHTML += '<option>' + minor_subject + '</option>'
       predicate_conclusion_select_items.innerHTML += '<option>' + minor_subject + '</option>'
     }
-    if(minor_predicate != null && minor_predicate != ''){
+    if(minor_predicate != null && minor_predicate != '' && subject_conclusion_select_items.innerHTML.indexOf('>'+minor_predicate+'<') == -1){
       subject_conclusion_select_items.innerHTML += '<option>' + minor_predicate + '</option>'
       predicate_conclusion_select_items.innerHTML += '<option>' + minor_predicate + '</option>'
     }
