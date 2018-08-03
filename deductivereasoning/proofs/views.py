@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from proofs.models import Proposition, Proof
+from proofs.models import *
 from .forms import MajorSubmissionForm
 from django.urls import reverse
-
+from comments.forms import CommentForm
+from comments.models import Comment
 
 def home(request):
 	concobj = []
@@ -22,12 +23,25 @@ def proposition_detail(request, id):
 	conclusion = proofs.conclusion
 	major = proofs.major
 	minor = proofs.minor
+	form = CommentForm()
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			comment.user = request.user
+			comment.modelObject = proofs
+			comment.save()
+			return redirect('home')
+	Comments = Comment.objects.filter(modelObject=proofs)
 	return render(request, 'proposition_detail.html', {
 		'major': major,
 		'minor': minor,
 		'conclusion': conclusion,
 		'title': 'Önerme',
+		'form': form,
+		'Comments': Comments,
 	})
+
 
 def submit(request):
 	form = MajorSubmissionForm()
