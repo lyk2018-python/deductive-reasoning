@@ -2,9 +2,11 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
+<div class="signupPage">
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btnSubmit">Sign Up</button>
   </form>
+</div>
 {% endblock %}

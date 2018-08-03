@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+hr {
+  width: 70%;
+}
+
 .container {
   width: 60em;
   margin: 150px auto;
@@ -47,7 +51,7 @@ a {
   color: black;
 }
 
-.topnav a:active {
+.topnav a.active {
   background-color: #0066ff;
   color: white;
 }
@@ -77,6 +81,7 @@ input[type=text], input[type=password] {
   font-size: 16px;
   border: none;
   letter-spacing: 0.5px;
+  border-radius: 3px;
 }
 .btnSubmit:hover {
   cursor: pointer;
@@ -109,6 +114,16 @@ input[type=text], input[type=password] {
 .loginPage {
   text-align: center;
   padding-top: 15px;
+}
+
+/* SignUp Page */
+
+.signupPage {
+  text-align: center;
+}
+
+.signupPage span, ul {
+  display: none;
 }
 
 /* Footer */
