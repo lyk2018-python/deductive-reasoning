@@ -1,11 +1,12 @@
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
+  letter-spacing: 0.5px;
 }
 
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: #404040;
 }
 
 .topnav a {
@@ -27,6 +28,78 @@ body {
   color: white;
 }
 .container {
-  width: 70em;
-  margin: auto;
+  width: 60em;
+  margin: 150px auto;
+  padding: 20px;
+  background-color: white;
+}
+
+.user {
+  color: #F2F2F2;
+  font-size: 18px;
+  display: inline-block;
+  float: right;
+  margin: 12px 30px;
+}
+
+input[type=text], input[type=password] {
+  width: 30%;
+  margin: 2px;
+  padding: 5px;
+}
+
+.invalidArgError{
+  background-color: #ff002d;
+  color: #F2F2F2;
+  padding: 17px 35px;
+  font-size: 16px;
+  border: none;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+.btnSubmit {
+  background-color: #0066ff;
+  color: #F2F2F2;
+  padding: 15px 35px;
+  font-size: 16px;
+  border: none;
+  letter-spacing: 0.5px;
+}
+.btnSubmit:hover {
+  cursor: pointer;
+}
+#buttonSubmit:disabled{
+  background-color:#69768a;
+}
+
+.about {
+  text-align: center;
+  font-size: 20px;
+  padding: 50px;
+}
+
+.loginPage {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.content {
+  margin: 15px;
+  padding: 15px;
+  border: 15px double #424242;
+  text-align: center;
+}
+
+.content p {
+  font-size: 20px;
+}
+
+.footer {
+  color: white;
+  height: 50px;
+  width: 60em;
+  text-align: center;
+  padding-top: 4px;
+  background-color: #404040;
 }

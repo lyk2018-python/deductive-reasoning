@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 def universal(universal):
     if universal == True:
         return "All"
@@ -49,7 +48,6 @@ class Proof(models.Model):
     type = models.CharField(max_length=5,default="")
 
     def __str__(self):
-        return  (universal(self.major.is_universal)+ " " + self.major.subject + " " + affirmative(self.major.is_affirmative) + " " + self.major.predicate + "___" 
-            + universal(self.minor.is_universal)+ " " + self.minor.subject + " " + affirmative(self.minor.is_affirmative) + " " + self.minor.predicate + "___" 
+        return  (universal(self.major.is_universal)+ " " + self.major.subject + " " + affirmative(self.major.is_affirmative) + " " + self.major.predicate + "___"
+            + universal(self.minor.is_universal)+ " " + self.minor.subject + " " + affirmative(self.minor.is_affirmative) + " " + self.minor.predicate + "___"
             + universal(self.conclusion.is_universal)+ " " + self.conclusion.subject + " " + affirmative(self.conclusion.is_affirmative) + " " + self.conclusion.predicate)
-

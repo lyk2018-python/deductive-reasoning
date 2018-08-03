@@ -35,7 +35,6 @@ def submit(request):
 
 	if request.method == "POST":
 		form = MajorSubmissionForm(request.POST)
-
 		if form.is_valid():
 			major = Proposition.objects.create(
 				is_universal=form.cleaned_data['is_universal_major'],
@@ -57,7 +56,7 @@ def submit(request):
 				is_affirmative=form.cleaned_data['is_affirmative_conclusion'],
 				predicate=form.cleaned_data['predicate_conclusion'],
 			)
-			setConclusionType(major,minor,conclusion)
+			setConclusionType(major, minor, conclusion)
 			major.save()
 			minor.save()
 			conclusion.save()
