@@ -29,7 +29,7 @@ body {
 }
 .container {
   width: 60em;
-  margin: 150px auto;
+  margin: auto;
   padding: 20px;
   background-color: white;
 }
@@ -46,6 +46,14 @@ input[type=text], input[type=password] {
   width: 30%;
   margin: 2px;
   padding: 5px;
+}
+
+#logo img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 180px;
+  margin-bottom: 20px;
 }
 
 .invalidArgError{
@@ -71,6 +79,12 @@ input[type=text], input[type=password] {
 }
 #buttonSubmit:disabled{
   background-color:#69768a;
+}
+
+.content .createdBy{
+  font: italic bold 12px/30px Georgia, serif;
+  text-align:left;
+  margin-bottom: -15px;
 }
 
 .about {

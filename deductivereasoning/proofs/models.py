@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+from django.utils import timezone
 
 
 def universal(universal):
@@ -17,11 +19,16 @@ class Proposition(models.Model):
     """
 
     """
+    user = models.ForeignKey(
+    settings.AUTH_USER_MODEL,
+    null=True,
+    on_delete=models.CASCADE,
+    )
     is_universal = models.BooleanField()
     subject = models.CharField(max_length=30)
     is_affirmative = models.BooleanField()
     predicate = models.CharField(max_length=30)
-    type = models.CharField(max_length=5,default="",blank=True)
+    created_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return universal(self.is_universal) + " " + self.subject + " " + affirmative(self.is_affirmative) + " " + self.predicate
@@ -30,6 +37,11 @@ class Proof(models.Model):
     """
 
     """
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        on_delete=models.CASCADE,
+    )
     major = models.ForeignKey(
         Proposition,
         related_name='major',
@@ -45,7 +57,6 @@ class Proof(models.Model):
         related_name='conclusion',
         on_delete=models.CASCADE,
     )
-    type = models.CharField(max_length=5,default="")
 
     def __str__(self):
         return  (universal(self.major.is_universal)+ " " + self.major.subject + " " + affirmative(self.major.is_affirmative) + " " + self.major.predicate + "___"

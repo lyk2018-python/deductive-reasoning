@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from proofs.models import Proposition, Proof
 from .forms import MajorSubmissionForm
-from .typeChecker import *
 from django.urls import reverse
 
 
@@ -41,22 +40,22 @@ def submit(request):
 				subject=form.cleaned_data['subject_major'],
 				is_affirmative=form.cleaned_data['is_affirmative_major'],
 				predicate=form.cleaned_data['predicate_major'],
+				user=request.user,
 			)
-			setPropositionType(major)
 			minor = Proposition.objects.create(
 				is_universal=form.cleaned_data['is_universal_minor'],
 				subject=form.cleaned_data['subject_minor'],
 				is_affirmative=form.cleaned_data['is_affirmative_minor'],
 				predicate=form.cleaned_data['predicate_minor'],
+				user=request.user,
 			)
-			setPropositionType(minor)
 			conclusion = Proposition.objects.create(
 				is_universal=form.cleaned_data['is_universal_conclusion'],
 				subject=form.cleaned_data['subject_conclusion'],
 				is_affirmative=form.cleaned_data['is_affirmative_conclusion'],
 				predicate=form.cleaned_data['predicate_conclusion'],
+				user=request.user,
 			)
-			setConclusionType(major, minor, conclusion)
 			major.save()
 			minor.save()
 			conclusion.save()
