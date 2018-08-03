@@ -4,8 +4,8 @@
 
 {% block content %}
   {% for conclusion in conclusions %}
-    <p><a href="{% url 'proposition_detail' conclusion.id %}">{{ conclusion }}</a></p>
+    <p><a href="{% url 'proposition_detail' conclusion.id %}">{{ conclusion }}</a></p><hr/>
   {% endfor %}
   <br/>
- 
+
 {% endblock %}

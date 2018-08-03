@@ -4,6 +4,34 @@ body {
   letter-spacing: 0.5px;
 }
 
+a {
+  text-decoration: none;
+}
+
+hr {
+  width: 70%;
+}
+
+.container {
+  width: 60em;
+  margin: 150px auto;
+  padding: 20px;
+  background-color: white;
+}
+
+.content {
+  margin: 15px;
+  padding: 15px;
+  border: 15px double #424242;
+  text-align: center;
+}
+
+.content p {
+  font-size: 20px;
+}
+
+/* Navigation Bar */
+
 .topnav {
   overflow: hidden;
   background-color: #404040;
@@ -27,12 +55,8 @@ body {
   background-color: #0066ff;
   color: white;
 }
-.container {
-  width: 60em;
-  margin: 150px auto;
-  padding: 20px;
-  background-color: white;
-}
+
+/* Hello User :) */
 
 .user {
   color: #F2F2F2;
@@ -42,10 +66,29 @@ body {
   margin: 12px 30px;
 }
 
+/* Buttoooon */
+
 input[type=text], input[type=password] {
   width: 30%;
   margin: 2px;
   padding: 5px;
+}
+
+.btnSubmit {
+  background-color: #0066ff;
+  color: #F2F2F2;
+  padding: 15px 35px;
+  font-size: 16px;
+  border: none;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+}
+.btnSubmit:hover {
+  cursor: pointer;
+}
+
+.btnSubmit:disabled {
+  background-color:#69768a;
 }
 
 .invalidArgError{
@@ -58,20 +101,7 @@ input[type=text], input[type=password] {
   margin-bottom: 5px;
 }
 
-.btnSubmit {
-  background-color: #0066ff;
-  color: #F2F2F2;
-  padding: 15px 35px;
-  font-size: 16px;
-  border: none;
-  letter-spacing: 0.5px;
-}
-.btnSubmit:hover {
-  cursor: pointer;
-}
-#buttonSubmit:disabled{
-  background-color:#69768a;
-}
+/* About Page */
 
 .about {
   text-align: center;
@@ -79,21 +109,24 @@ input[type=text], input[type=password] {
   padding: 50px;
 }
 
+/* Login Page */
+
 .loginPage {
   text-align: center;
   padding-top: 15px;
 }
 
-.content {
-  margin: 15px;
-  padding: 15px;
-  border: 15px double #424242;
+/* SignUp Page */
+
+.signupPage {
   text-align: center;
 }
 
-.content p {
-  font-size: 20px;
+.signupPage span, ul {
+  display: none;
 }
+
+/* Footer */
 
 .footer {
   color: white;
@@ -102,4 +135,8 @@ input[type=text], input[type=password] {
   text-align: center;
   padding-top: 4px;
   background-color: #404040;
+}
+
+.footer a {
+  color: #4C90F7;
 }
