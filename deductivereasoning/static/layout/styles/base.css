@@ -48,6 +48,16 @@ input[type=text], input[type=password] {
   padding: 5px;
 }
 
+.invalidArgError{
+  background-color: #ff002d;
+  color: #F2F2F2;
+  padding: 17px 35px;
+  font-size: 16px;
+  border: none;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
 .btnSubmit {
   background-color: #0066ff;
   color: #F2F2F2;
@@ -58,6 +68,9 @@ input[type=text], input[type=password] {
 }
 .btnSubmit:hover {
   cursor: pointer;
+}
+#buttonSubmit:disabled{
+  background-color:#69768a;
 }
 
 .about {
