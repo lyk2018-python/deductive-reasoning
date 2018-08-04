@@ -2,6 +2,7 @@
 {% block title %}Submit Page{% endblock %}
 {% block content %}
   {% if user.is_authenticated %}
+    {% if user.is_staff %}
     <form method="post">
       {% csrf_token %}
       <p>Major argument:<br/>
@@ -49,6 +50,9 @@
 
 
       </form>
+    {% else %}
+      <h3>You are not a staff</h3>
+    {% endif %}
     {% else %}
       <h3>Please Login</h3>
     {% endif %}
