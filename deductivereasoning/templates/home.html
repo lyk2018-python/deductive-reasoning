@@ -3,9 +3,16 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-  {% for conclusion in conclusions %}
-    <p><a href="{% url 'proposition_detail' conclusion.id %}">{{ conclusion }}</a></p><hr/>
-  {% endfor %}
-  <br/>
 
+
+ 
+{% for conclusion in conclusions %}
+	<div class="box">
+		<p>
+			<a href="{% url 'proposition_detail' conclusion.id %}">
+				{{ conclusion }}</a>
+		</p>
+  	</div>
+	<br/>
+{% endfor %}
 {% endblock %}
