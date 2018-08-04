@@ -3,11 +3,14 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 <div class="content">
-  <p>{{ major }}</p>
-  <p>{{ minor }}</p>
-  <p>{{ conclusion }}</p>
-  <p class="createdBy" >Created by:{{ major.user }}</p>
-  <p class="createdBy" >Date:{{ major.created_date }}</p>
+  <p>{{ major }} </br>
+ 	{{ minor }}	</br>
+  	{{ conclusion }}
+  	<div class="createdBy">
+  	Created by:{{ major.user }}
+  	Date:{{ major.created_date }}
+  	</div>
+  </p>
 </div>
 	<form method="post">
       {% csrf_token %}
