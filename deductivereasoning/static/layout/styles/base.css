@@ -111,20 +111,28 @@ body {
   background-repeat: no-repeat;
 }
 
-
 .content .right {
   width: 278px;
   display: inline-block;
   float: left;
   background-color: orange;
 }
-.content p{
+.content .propDetail{
   background-color: #9EF0C5;
-  padding: 20px 20px 20px 20px;
+  padding: 10px 20px 20px 20px;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 20px;
   margin-right: 40%;
+  line-height: 2;
+}
+.content .createdBy{
+  font: italic bold 12px/30px Georgia, serif;
+  text-align:right;
+  margin-bottom: -15px;
+}
+.content .createdBy p{
+  line-height: 1.5;
 }
 
 .box{
@@ -145,15 +153,39 @@ body {
   background-color: #F3FD83;
   padding: 10px 20px 10px 20px;
   font-size: 20px;
-  font-weight: 600;
   color: #333646;
   display: inline-block;
   text-decoration: none;
 }
+.comment h3{
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: green;
+}
+.commentBox{
+  background-color: #CCF59A;
+  font-weight: normal;
+}
+.box .commentUser{
+  text-align: right;
+  font-weight: 600;
+}
 
+.about{
+  background-color: #9EF0C5;
+  padding: 20px 20px 20px 20px;
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  margin-right: 40%;
+}
 
-
-
+.dashboard{
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 1.4;
+}
 
 
 
