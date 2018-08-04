@@ -44,7 +44,7 @@
       <select name="predicate_conclusion" id="id_predicate_conclusion">
       </select></p>
       <div id="invalidArg" class="invalidArgError" style="display:none;">CANNOT CREATE INVALID ARGUMENT</div>
-      <button id="buttonSubmit" type="submit"  class="btnSubmit">Submit</button>
+      <button id="buttonSubmit" type="submit" onclick="onSubmitClick()" class="btnSubmit">Submit</button>
 
 
 
@@ -53,6 +53,18 @@
       <h3>Please Login</h3>
     {% endif %}
   <script type="text/javascript">
+  function onSubmitClick(){
+    var major_subject = document.getElementById('id_subject_major').value
+    var major_predicate = document.getElementById('id_predicate_major').value
+    var minor_subject = document.getElementById('id_subject_minor').value
+    var minor_predicate = document.getElementById('id_predicate_minor').value
+    if (major_subject == "" || major_predicate == "" || minor_subject == "" || minor_predicate == "") {
+      document.getElementById("buttonSubmit").disabled = false;
+    }
+    else{
+      document.getElementById("buttonSubmit").disabled = true;
+    }
+  }
   function convertToJSBoolean(boolToConvert){
     if (boolToConvert == 'True'){
       return true;
