@@ -1,167 +1,135 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0;
+  background-color: #D6EFE2;
+  //font-family: "Tahoma";
   font-family: Helvetica, sans-serif;
-  letter-spacing: 0.5px;
+  font-size: 16px;
 }
 
-a {
-  text-decoration: none;
-}
-
-hr {
-  width: 70%;
-}
-
-
-.content {
-  margin: 15px;
-  padding: 15px;
-  border: 15px double #424242;
-  text-align: center;
-}
-
-.content p {
-  font-size: 20px;
-}
-
-/* Navigation Bar */
-
-.topnav {
-  overflow: hidden;
-  background-color: #404040;
-}
-
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #0066ff;
-  color: white;
+.clear {
+  clear: both;
 }
 
 .container {
-  width: 60em;
-  margin: auto;
-  padding: 20px;
-  background-color: white;
-}
-
-
-
-.user {
-  color: #F2F2F2;
-  font-size: 18px;
-  display: inline-block;
-  float: right;
-  margin: 12px 30px;
-}
-
-/* Buttoooon */
-
-input[type=text], input[type=password] {
-  width: 30%;
-  margin: 2px;
-  padding: 5px;
-}
-
-#logo img {
-  display: block;
-  margin-left: auto;
+  width: 940px;
   margin-right: auto;
-  width: 180px;
-  margin-bottom: 20px;
+  margin-left: auto;
+  //border: 1px solid gray;
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+
 }
 
-.invalidArgError{
-  background-color: #ff002d;
-  color: #F2F2F2;
-  padding: 17px 35px;
-  font-size: 16px;
-  border: none;
-  letter-spacing: 0.5px;
-  margin-bottom: 5px;
+.header img {
+  float: left;
 }
 
-.btnSubmit {
-  background-color: #0066ff;
-  color: #F2F2F2;
-  padding: 15px 35px;
-  font-size: 16px;
-  border: none;
-  letter-spacing: 0.5px;
-  border-radius: 3px;
-}
-.btnSubmit:hover {
-  cursor: pointer;
+
+.header ul {
+  float: right;
+  margin-top: 24px;
 }
 
-.btnSubmit:disabled {
-  background-color:#69768a;
+.header ul li {
+  display: inline-block;
+  margin-left: 15px;
 }
 
-.content .createdBy{
-  font: italic bold 12px/30px Georgia, serif;
-  text-align:left;
-  margin-bottom: -15px;
+.header ul li:first-child {
+  margin-left: 0;
 }
 
-.invalidArgError{
-  background-color: #ff002d;
-  color: #F2F2F2;
-  padding: 17px 35px;
-  font-size: 16px;
-  border: none;
-  letter-spacing: 0.5px;
-  margin-bottom: 5px;
+.nav {
+  margin-top: 50px;
 }
 
-/* About Page */
+.nav ul li{
+  float: left;
+  display: inline-block;
+  margin-left: 0;
+}
 
-.about {
-  text-align: center;
+.nav ul li:first-child {
+  margin-left: 0;
+}
+
+.nav ul li a {
+  background-color: #F3FD83;
+  padding: 10px 20px 10px 20px;
   font-size: 20px;
-  padding: 50px;
+  font-weight: 600;
+  color: #333646;
+  text-decoration: none;
 }
 
-/* Login Page */
+.nav ul li a:hover {
+  background-color: yellow;
+}
 
-.loginPage {
+.content {
+  margin-top: 50px;
+  //background-color: red;
+}
+
+.content .left {
+  width: 600px;
+  display: inline-block;
+  float: left;
+  //background-color: purple;
+}
+
+.content .left .box {
+  margin-left: 24px;
+  width: 552px;
+  margin-bottom: 30px;
+  background-color: rgba(51,54,70,0.16);
+  border-bottom: 1px solid #333646;
+  padding: 30px;
   text-align: center;
-  padding-top: 15px;
+  font-size: 18px;
+  letter-spacing: 3px;l
 }
 
-/* SignUp Page */
+.content .left .box:hover{
+  background-color: rgba(51,54,70,0.3);
+  }
 
-.signupPage {
-  text-align: center;
+.content .left button {
+  width: 120px;
+  height: 24px;
+  border: 0;
+  margin-left: 236px;
+  background-image: url('load.png');
+  background-repeat: no-repeat;
 }
 
-.signupPage span, ul {
-  display: none;
+
+.content .right {
+  width: 278px;
+  display: inline-block;
+  float: left;
+  background-color: orange;
 }
 
-/* Footer */
 
-.footer {
-  color: white;
-  height: 50px;
-  width: 60em;
-  text-align: center;
-  padding-top: 4px;
-  background-color: #404040;
-}
 
-.footer a {
-  color: #4C90F7;
-}
+
+
+
+
+
+
+
+
+
+
+
+
