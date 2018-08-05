@@ -38,15 +38,9 @@
           <li>
             <a href="{% url 'about' %}">About</a>
           </li>
-          <li>
             {% if user.is_authenticated %}
-            Hello {{ user.username }}
-          </li>
           <li>
             <a href="{% url 'submit' %}">Submit</a>
-          </li>
-          <li>
-            <a href="{% url 'about' %}">About</a>
           </li>
            <li>
             <a href="{% url 'logout' %}">Logout</a>
@@ -58,6 +52,11 @@
             <a href="{% url 'login' %}">Login</a>
           </li>       
           {% endif %}
+          <li>
+            {% if user.is_authenticated %}
+              <a href="{% url 'dashboard' %}"> {{ user.username }} </a>
+            {% endif %}
+          </li>
         </ul>
         <div class="clear"></div>
     </div>
