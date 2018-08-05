@@ -31,7 +31,6 @@ def proposition_detail(request, id):
 			comment.user = request.user
 			comment.modelObject = proofs
 			comment.save()
-			return redirect('home')
 	Comments = Comment.objects.filter(modelObject=proofs)
 	return render(request, 'proposition_detail.html', {
 		'major': major,
