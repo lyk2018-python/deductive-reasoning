@@ -2,66 +2,68 @@
 {% block title %}Submit Page{% endblock %}
 {% block content %}
   {% if user.is_authenticated %}
-    {% if user.is_staff %}
-    <form method="post">
+    <form method="post" class="box">
       {% csrf_token %}
-      <p>Major argument:<br/>
-      <select onchange="decideInvalidArgs()" name="is_universal_major" id="id_is_universal_major">
-        <option value="True">All</option>
-        <option value="False">Some</option>
-      </select>
-      <input type="text" onchange="getElements()" name="subject_major" maxlength="255" required id="id_subject_major" />
+      <div class="argument">
+        <p>Major argument:<br/></p>
+        <select class="selectBox" onchange="decideInvalidArgs()" name="is_universal_major" id="id_is_universal_major">
+          <option value="True">All</option>
+          <option value="False">Some</option>
+        </select>
+        <input type="text" class="submitText" onchange="getElements()" name="subject_major" maxlength="255" required id="id_subject_major" />
 
-      <select onchange="decideInvalidArgs()" name="is_affirmative_major" id="id_is_affirmative_major">
-        <option value="True">Are</option>
-        <option value="False">Are not</option>
-      </select>
-      <input type="text" onchange="getElements()" name="predicate_major" maxlength="255" required id="id_predicate_major" /></p>
-      <p>Minor argument:<br/>
-      <select onchange="decideInvalidArgs()" name="is_universal_minor" id="id_is_universal_minor">
-        <option value="True">All</option>
-        <option value="False">Some</option>
-      </select>
-      <input type="text" onchange="getElements()" name="subject_minor" maxlength="255" required id="id_subject_minor" />
+        <select class="selectBox" onchange="decideInvalidArgs()" name="is_affirmative_major" id="id_is_affirmative_major">
+          <option value="True">Are</option>
+          <option value="False">Are not</option>
+        </select>
+        <input type="text" class="submitText" onchange="getElements()" name="predicate_major" maxlength="255" required id="id_predicate_major" />
+      </div>
 
-      <select onchange="decideInvalidArgs()" name="is_affirmative_minor" id="id_is_affirmative_minor">
-        <option value="True">Are</option>
-        <option value="False">Are not</option>
-      </select>
-      <input type="text" onchange="getElements()" name="predicate_minor" maxlength="255" required id="id_predicate_minor" /></p>
-      <p>Conclusion:<br/>
+      <div class="argument">
+        <p>Minor argument:<br/></p>
+        <select class="selectBox" onchange="decideInvalidArgs()" name="is_universal_minor" id="id_is_universal_minor">
+          <option value="True">All</option>
+          <option value="False">Some</option>
+        </select>
+        <input type="text" class="submitText" onchange="getElements()" name="subject_minor" maxlength="255" required id="id_subject_minor" />
 
-      <select onchange="decideInvalidArgs()" name="is_universal_conclusion" id="id_is_universal_conclusion">
-        <option value="True">All</option>
-        <option value="False">Some</option>
-      </select>
-      <select name="subject_conclusion" id="id_subject_conclusion">
-      </select>
+        <select class="selectBox" onchange="decideInvalidArgs()" name="is_affirmative_minor" id="id_is_affirmative_minor">
+          <option value="True">Are</option>
+          <option value="False">Are not</option>
+        </select>
+        <input type="text" class="submitText" onchange="getElements()" name="predicate_minor" maxlength="255" required id="id_predicate_minor" />
+      </div>
 
-      <select onchange="decideInvalidArgs()" name="is_affirmative_conclusion" id="id_is_affirmative_conclusion">
-        <option value="True">Are</option>
-        <option value="False">Are not</option>
-      </select>
-      <select name="predicate_conclusion" id="id_predicate_conclusion">
-      </select></p>
-      <div id="invalidArg" class="invalidArgError" style="display:none;">CANNOT CREATE INVALID ARGUMENT</div>
-      <button id="buttonSubmit" type="submit" onclick="onSubmitClick()" class="btnSubmit">Submit</button>
+      <div class="argument">
+        <p>Conclusion:<br/></p>
+        <select class="selectBox" onchange="decideInvalidArgs()" name="is_universal_conclusion" id="id_is_universal_conclusion">
+          <option value="True">All</option>
+          <option value="False">Some</option>
+        </select>
+        <select class="changeBox" name="subject_conclusion" id="id_subject_conclusion">
+        </select>
 
+        <select class="selectBox" onchange="decideInvalidArgs()" name="is_affirmative_conclusion" id="id_is_affirmative_conclusion">
+          <option value="True">Are</option>
+          <option value="False">Are not</option>
+        </select>
+        <select class="changeBox" name="predicate_conclusion" id="id_predicate_conclusion">
+        </select>
+      </div>
 
-
+      <div id="invalidArg" class="invalidArgError submitWarning" style="display:none;">CANNOT CREATE INVALID ARGUMENT</div>
+      <button type="submit" class="btnSubmit" id="buttonSubmit" onclick="onSubmitClick()">Submit</button>
       </form>
-    {% else %}
-      <h3>You are not a staff</h3>
-    {% endif %}
     {% else %}
       <h3>Please Login</h3>
     {% endif %}
+
   <script type="text/javascript">
   function onSubmitClick(){
-    var major_subject = document.getElementById('id_subject_major').value
-    var major_predicate = document.getElementById('id_predicate_major').value
-    var minor_subject = document.getElementById('id_subject_minor').value
-    var minor_predicate = document.getElementById('id_predicate_minor').value
+    var major_subject = document.getElementById('id_subject_major').value;
+    var major_predicate = document.getElementById('id_predicate_major').value;
+    var minor_subject = document.getElementById('id_subject_minor').value;
+    var minor_predicate = document.getElementById('id_predicate_minor').value;
     if (major_subject == "" || major_predicate == "" || minor_subject == "" || minor_predicate == "") {
       document.getElementById("buttonSubmit").disabled = false;
     }
@@ -79,21 +81,21 @@
   }
   function decideInvalidArgs(){
     var is_universal_major = document.getElementById('id_is_universal_major').value;
-    var is_affirmative_major = document.getElementById('id_is_affirmative_major').value
-    var is_universal_minor = document.getElementById('id_is_universal_minor').value
-    var is_affirmative_minor = document.getElementById('id_is_affirmative_minor').value
-    var is_universal_conclusion = document.getElementById('id_is_universal_conclusion').value
-    var is_affirmative_conclusion = document.getElementById('id_is_affirmative_conclusion').value
-    var is_universal_majorJS = convertToJSBoolean(is_universal_major)
-    var is_affirmative_majorJS = convertToJSBoolean(is_affirmative_major)
-    var is_universal_minorJS = convertToJSBoolean(is_universal_minor)
-    var is_affirmative_minorJS = convertToJSBoolean(is_affirmative_minor)
-    var is_universal_conclusionJS = convertToJSBoolean(is_universal_conclusion)
-    var is_affirmative_conclusionJS = convertToJSBoolean(is_affirmative_conclusion)
-    var majorConclusionType = getConclusionType(is_universal_majorJS, is_affirmative_majorJS)
-    var minorConclusionType = getConclusionType(is_universal_minorJS, is_affirmative_minorJS)
-    var conclusionConclusionType = getConclusionType(is_universal_conclusionJS, is_affirmative_conclusionJS)
-    var isValid = isConclusionValid(majorConclusionType, minorConclusionType, conclusionConclusionType)
+    var is_affirmative_major = document.getElementById('id_is_affirmative_major').value;
+    var is_universal_minor = document.getElementById('id_is_universal_minor').value;
+    var is_affirmative_minor = document.getElementById('id_is_affirmative_minor').value;
+    var is_universal_conclusion = document.getElementById('id_is_universal_conclusion').value;
+    var is_affirmative_conclusion = document.getElementById('id_is_affirmative_conclusion').value;
+    var is_universal_majorJS = convertToJSBoolean(is_universal_major);
+    var is_affirmative_majorJS = convertToJSBoolean(is_affirmative_major);
+    var is_universal_minorJS = convertToJSBoolean(is_universal_minor);
+    var is_affirmative_minorJS = convertToJSBoolean(is_affirmative_minor);
+    var is_universal_conclusionJS = convertToJSBoolean(is_universal_conclusion);
+    var is_affirmative_conclusionJS = convertToJSBoolean(is_affirmative_conclusion);
+    var majorConclusionType = getConclusionType(is_universal_majorJS, is_affirmative_majorJS);
+    var minorConclusionType = getConclusionType(is_universal_minorJS, is_affirmative_minorJS);
+    var conclusionConclusionType = getConclusionType(is_universal_conclusionJS, is_affirmative_conclusionJS);
+    var isValid = isConclusionValid(majorConclusionType, minorConclusionType, conclusionConclusionType);
     if (isValid) {
       document.getElementById("invalidArg").style.display = 'none';
       document.getElementById("buttonSubmit").disabled = false;
@@ -105,78 +107,78 @@
   }
   function isConclusionValid(major, minor, conclusion){
     if (major == "A" && minor == "A" && conclusion == "A") {
-      return true
+      return true;
     }
     else if (major == "E" && minor == "A" && conclusion == "E"){
-      return true
+      return true;
     }
     else if (major == "A" && minor == "I" && conclusion == "I"){
-      return true
+      return true;
     }
     else if (major == "E" && minor == "I" && conclusion == "O"){
-      return true
+      return true;
     }
     else if (major == "A" && minor == "E" && conclusion == "O"){
-      return true
+      return true;
     }
     else if (major == "A" && minor == "O" && conclusion == "O"){
-      return true
+      return true;
     }
     else if (major == "O" && minor == "A" && conclusion == "O"){
-      return true
+      return true;
     }
     else if (major == "E" && minor == "A" && conclusion == "O"){
-      return true
+      return true;
     }
     else if (major == "A" && minor == "E" && conclusion == "E"){
-      return true
+      return true;
     }
     else if (major == "I" && minor == "A" && conclusion == "I"){
-      return true
+      return true;
     }
     else{
-      return false
+      return false;
     }
   }
   function getConclusionType(universal, affirmative){
     if(universal == true && affirmative == true){
-      return "A"
+      return "A";
     }
     else if (universal == true && affirmative == false){
-      return "I"
+      return "I";
     }
     else if (universal == false && affirmative == true){
-      return "E"
+      return "E";
     }
     else{
-      return "O"
+      return "O";
     }
   }
   function getElements(){
-    var subject_conclusion_select_items = document.getElementById("id_subject_conclusion")
-    var predicate_conclusion_select_items = document.getElementById("id_predicate_conclusion")
-    subject_conclusion_select_items.innerHTML = ''
-    predicate_conclusion_select_items.innerHTML = ''
-    var major_subject = document.getElementById('id_subject_major').value
-    var major_predicate = document.getElementById('id_predicate_major').value
-    var minor_subject = document.getElementById('id_subject_minor').value
-    var minor_predicate = document.getElementById('id_predicate_minor').value
-    var subject_conclusion_select_items = document.getElementById("id_subject_conclusion")
+    var subject_conclusion_select_items = document.getElementById('id_subject_conclusion');
+    var predicate_conclusion_select_items = document.getElementById('id_predicate_conclusion');
+    subject_conclusion_select_items.innerHTML = '';
+    predicate_conclusion_select_items.innerHTML = '';
+    var major_subject = document.getElementById('id_subject_major').value;
+    var major_predicate = document.getElementById('id_predicate_major').value;
+    var minor_subject = document.getElementById('id_subject_minor').value;
+    var minor_predicate = document.getElementById('id_predicate_minor').value;
+    var subject_conclusion_select_items = document.getElementById('id_subject_conclusion');
     if(major_subject != null && major_subject != '' && subject_conclusion_select_items.innerHTML.indexOf('>'+major_subject+'<') == -1){
-      subject_conclusion_select_items.innerHTML += '<option>' + major_subject + '</option>'
-      predicate_conclusion_select_items.innerHTML += '<option>' + major_subject + '</option>'
+      subject_conclusion_select_items.innerHTML += '<option>' + major_subject + '</option>';
+      predicate_conclusion_select_items.innerHTML += '<option>' + major_subject + '</option>';
     }
     if(major_predicate != null && major_predicate != '' && subject_conclusion_select_items.innerHTML.indexOf('>'+major_predicate+'<') == -1){
-      subject_conclusion_select_items.innerHTML += '<option>' + major_predicate + '</option>'
-      predicate_conclusion_select_items.innerHTML += '<option>' + major_predicate + '</option>'
+      subject_conclusion_select_items.innerHTML += '<option>' + major_predicate + '</option>';
+      predicate_conclusion_select_items.innerHTML += '<option>' + major_predicate + '</option>';
     }
     if(minor_subject != null && minor_subject != '' && subject_conclusion_select_items.innerHTML.indexOf('>'+minor_subject+'<') == -1){
-      subject_conclusion_select_items.innerHTML += '<option>' + minor_subject + '</option>'
-      predicate_conclusion_select_items.innerHTML += '<option>' + minor_subject + '</option>'
+      subject_conclusion_select_items.innerHTML += '<option>' + minor_subject + '</option>';
+      predicate_conclusion_select_items.innerHTML += '<option>' + minor_subject + '</option>';
     }
     if(minor_predicate != null && minor_predicate != '' && subject_conclusion_select_items.innerHTML.indexOf('>'+minor_predicate+'<') == -1){
-      subject_conclusion_select_items.innerHTML += '<option>' + minor_predicate + '</option>'
-      predicate_conclusion_select_items.innerHTML += '<option>' + minor_predicate + '</option>'
+      subject_conclusion_select_items.innerHTML += '<option>' + minor_predicate + '</option>';
+      predicate_conclusion_select_items.innerHTML += '<option>' + minor_predicate + '</option>';
     }
   }
   </script>
