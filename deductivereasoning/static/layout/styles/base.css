@@ -7,7 +7,6 @@
 
 body {
   background-color: #D6EFE2;
-  //font-family: "Tahoma";
   font-family: Helvetica, sans-serif;
   font-size: 16px;
 }
@@ -25,13 +24,11 @@ body {
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 50px;
-
 }
 
 .header img {
   float: left;
 }
-
 
 .header ul {
   float: right;
@@ -187,8 +184,64 @@ body {
   line-height: 1.4;
 }
 
+.selectBox {
+  padding: 4px;
+  margin: 5px;
+  color: #333646;
+  font-size: 15px;
+  border: none;
+  background-color: #F3FD83;
+}
 
+.selectBox:hover {
+  cursor: pointer;
+}
 
+.submitText {
+  width: 30%;
+  height: 25px;
+  border: none;
+  font-size: 16px;
+  padding-left: 5px;
+  color: #333646;
+}
 
+.argument {
+  margin: 8px;
+}
 
+.argument p {
+  color: #333646;
+  padding: 5px;
+}
 
+.changeBox {
+  padding: 4px;
+  margin: 5px;
+  border: none;
+  background-color: white;
+  width: 120px;
+  font-size: 16px;
+  padding-left: 5px;
+}
+
+.btnSubmit {
+  margin: 13px;
+  border: none;
+  width: 70px;
+  height: 40px;
+  background-color: #F3FD83;
+  color: #333646;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btnSubmit:hover {
+  cursor: pointer;
+  background-color: yellow;
+}
+
+.submitWarning {
+  color: #333646;
+  margin: 15px 0px 5px 15px;
+}
