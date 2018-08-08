@@ -24,8 +24,10 @@
 	      </div>
 	      	{% endfor %}
 	      <h3>Send Comment</h3>
-	          {{ form }}
-	      <button type="submit"> Submit </button>
-	      </form>
-      </div>
+	      <div class="argument">
+
+			<textarea name="text" cols="40" rows="10" required id="id_text"></textarea></br>
+	   		<button  class="btnSubmit" type="submit"> Submit </button>
+	    </form>
+    </div>
 {% endblock %}

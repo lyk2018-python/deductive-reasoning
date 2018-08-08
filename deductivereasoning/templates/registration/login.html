@@ -3,10 +3,13 @@
 
 {% block content %}
 <div class="loginPage" >
-  <form method="post">
+  <form method="post" class="box">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="argument" >
+    <p><label for="id_username">Username:</label> <input class="changeBox" type="text" name="username" autofocus required id="id_username"></p>
+	<p><label for="id_password">Password:</label> <input class="changeBox" type="password" name="password" required id="id_password"></p>
     <button type="submit" class="btnSubmit">Login</button>
+    </div>
   </form>
 </div>
 {% endblock %}
