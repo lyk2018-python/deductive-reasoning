@@ -3,9 +3,13 @@
 
 {% block content %}
 <div class="signupPage">
-  <form method="post">
+  <form method="post" class="box">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="argument">
+	    <p><label for="id_username">Username:</label> <input class="changeBox" type="text" name="username" maxlength="150" autofocus required id="id_username"></br> <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span></p>
+		<p><label for="id_password1">Password:</label> <input class="changeBox" type="password" name="password1" required id="id_password1"> <span class="helptext"><ul class="helptext"><li>Your password can&#39;t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can&#39;t be a commonly used password.</li><li>Your password can&#39;t be entirely numeric.</li></ul></span></p>
+		<p><label for="id_password2">Password confirmation:</label> <input class="changeBox" type="password" name="password2" required id="id_password2"></br> <span class="helptext">Enter the same password as before, for verification.</span></p>
+	</div>    
     <button type="submit" class="btnSubmit">Sign Up</button>
   </form>
 </div>

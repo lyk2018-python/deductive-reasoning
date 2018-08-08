@@ -3,20 +3,31 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 <div class="content">
-  <p>{{ major }}</p>
-  <p>{{ minor }}</p>
-  <p>{{ conclusion }}</p>
-  <p class="createdBy" >Created by:{{ major.user }}</p>
-  <p class="createdBy" >Date:{{ major.created_date }}</p>
+  <div class="propDetail">
+  	<p>{{ major }}</p>
+ 	<p>{{ minor }}</p>
+  	<p>{{ conclusion }}</p>
+  	<span class="createdBy">
+  	<p>Created by:{{ major.user }}</p>
+  	<p>Date:{{ major.created_date }}</p>
+  	</span>
+  </div>
 </div>
-	<form method="post">
-      {% csrf_token %}
-      <h3>Yorumlar</h3>
-        {% for Comment in Comments %}
-           <p> {{ Comment }} from {{ Comment.user }} on {{ Comment.created_date }} </p>
-      {% endfor %}
-      <h3>Yorum Gönder</h3>
-          {{ form }}
-      <button type="submit"> Submit </button>
-      </form>
+	<div class="comment">
+		<form method="post">
+	      {% csrf_token %}
+	      <h3>Comments</h3>
+	        {% for Comment in Comments %}
+	      <div class="commentBox box">
+	           <p class="commentUser">From {{ Comment.user }} on {{ Comment.created_date }} </p>
+	           <p>" {{ Comment }} " </p>
+	      </div>
+	      	{% endfor %}
+	      <h3>Send Comment</h3>
+	      <div class="argument">
+
+			<textarea name="text" cols="40" rows="10" required id="id_text"></textarea></br>
+	   		<button  class="btnSubmit" type="submit"> Submit </button>
+	    </form>
+    </div>
 {% endblock %}
