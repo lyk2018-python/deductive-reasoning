@@ -1,7 +1,7 @@
 # deductive-reasoning
 A tool for deductive reasoning
 
-[Deductive Reasoning Web Site](http://sv3e8g.srv.plusclouds.net/)
+[Deductive Reasoning Web Site](http://http://142.93.138.235)
 
 
 ## Virtualenv Kurulumu
