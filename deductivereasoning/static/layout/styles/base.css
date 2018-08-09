@@ -260,3 +260,14 @@ body {
   font-size: 14px;
   font-weight: bold;
 }
+
+.invalidArgError{
+  background-color: #ff002d;
+  color: #F2F2F2;
+  text-align: center;
+  padding: 17px 35px;
+  font-size: 16px;
+  border: none;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
