@@ -25,9 +25,12 @@
 	      	{% endfor %}
 	      <h3>Send Comment</h3>
 	      <div class="argument">
-
-			<textarea name="text" cols="40" rows="10" required id="id_text"></textarea></br>
-	   		<button  class="btnSubmit" type="submit"> Submit </button>
+	      	{% if user.is_authenticated %}
+				<textarea name="text" cols="40" rows="10" required id="id_text"></textarea></br>
+	   			<button  class="btnSubmit" type="submit"> Submit </button>
+	   		{% else %}
+	   			<p class="loginWarning">You need to login in order to comment</p>
+	   		{% endif %}
 	    </form>
     </div>
 {% endblock %}

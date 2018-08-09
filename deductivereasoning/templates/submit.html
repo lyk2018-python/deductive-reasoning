@@ -52,23 +52,23 @@
       </div>
 
       <div id="invalidArg" class="invalidArgError submitWarning" style="display:none;">CANNOT CREATE INVALID ARGUMENT</div>
-      <button type="submit" class="btnSubmit" id="buttonSubmit" onclick="onSubmitClick()">Submit</button>
+      <button type="submit" disabled class="btnSubmit" id="buttonSubmit" onclick="this.form.submit();this.disabled=true;" >Submit</button>
       </form>
     {% else %}
       <h3>Please Login</h3>
     {% endif %}
 
   <script type="text/javascript">
-  function onSubmitClick(){
+  function onInputTextValueChange(){
     var major_subject = document.getElementById('id_subject_major').value;
     var major_predicate = document.getElementById('id_predicate_major').value;
     var minor_subject = document.getElementById('id_subject_minor').value;
     var minor_predicate = document.getElementById('id_predicate_minor').value;
     if (major_subject == "" || major_predicate == "" || minor_subject == "" || minor_predicate == "") {
-      document.getElementById("buttonSubmit").disabled = false;
+      document.getElementById("buttonSubmit").disabled = true;
     }
     else{
-      document.getElementById("buttonSubmit").disabled = true;
+      document.getElementById("buttonSubmit").disabled = false;
     }
   }
   function convertToJSBoolean(boolToConvert){
@@ -180,6 +180,7 @@
       subject_conclusion_select_items.innerHTML += '<option>' + minor_predicate + '</option>';
       predicate_conclusion_select_items.innerHTML += '<option>' + minor_predicate + '</option>';
     }
+    onInputTextValueChange();
   }
   </script>
 {% endblock %}

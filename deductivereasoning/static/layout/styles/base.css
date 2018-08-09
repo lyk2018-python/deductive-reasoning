@@ -246,7 +246,17 @@ body {
   background-color: yellow;
 }
 
+.btnSubmit:disabled{
+ background-color: #cac698; 
+}
+
 .submitWarning {
   color: #333646;
   margin: 15px 0px 5px 15px;
+}
+
+.loginWarning{
+  color: red !important;
+  font-size: 14px;
+  font-weight: bold;
 }
