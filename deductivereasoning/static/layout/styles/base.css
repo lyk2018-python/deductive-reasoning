@@ -11,6 +11,10 @@ body {
   font-size: 16px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .clear {
   clear: both;
 }
@@ -274,4 +278,9 @@ body {
 
 .social-media {
   color: #333646;
+}
+
+.footer a {
+  color: green;
+  font-weight: 600;
 }
