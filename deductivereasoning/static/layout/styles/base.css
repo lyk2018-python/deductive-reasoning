@@ -247,7 +247,7 @@ body {
 }
 
 .btnSubmit:disabled{
- background-color: #cac698; 
+ background-color: #cac698;
 }
 
 .submitWarning {
@@ -270,4 +270,8 @@ body {
   border: none;
   letter-spacing: 0.5px;
   margin-bottom: 5px;
+}
+
+.social-media {
+  color: #333646;
 }

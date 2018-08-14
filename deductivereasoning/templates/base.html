@@ -18,13 +18,8 @@
         </a>
         <ul>
           <li>
-            <a href="">
-              <img src="{% static 'facebook.png' %}">
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <img src="{% static 'twitter.png' %}">
+            <a href="https://github.com/lyk2018-python/deductive-reasoning" target="_blank">
+              <img src="{% static 'github.png' %}" class="social-media">
             </a>
           </li>
         </ul>
@@ -50,7 +45,7 @@
             <a href="{% url 'signup' %}">Signup</a>
            <li>
             <a href="{% url 'login' %}">Login</a>
-          </li>       
+          </li>
           {% endif %}
           <li>
             {% if user.is_authenticated %}
