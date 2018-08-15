@@ -4,13 +4,13 @@
 
 {% block content %}
   <div class="box dashboard">
-    <h2>Welcome {{ user.username }}</h2>
-    Name: {{ user.first_name }}
-    <br>
-    Surname: {{ user.last_name }}
-    <br>
-    User ID: {{ user.id }}
-    <br>
+    <h1 class="welcome">Welcome {{ user.username }}</h1>
+    {% if user.first_name and user.last_name %}
+      Name: {{ user.first_name }}
+      <br>
+      Surname: {{ user.last_name }}
+      <br>
+    {% endif %}
     Username: {{ user.username }}
     <br>
     User Email: {{ user.email }}
