@@ -5,32 +5,33 @@
 <div class="content">
   <div class="propDetail">
   	<p>{{ major }}</p>
- 	<p>{{ minor }}</p>
+ 	  <p>{{ minor }}</p>
   	<p>{{ conclusion }}</p>
   	<span class="createdBy">
-  	<p>Created by:{{ major.user }}</p>
-  	<p>Date:{{ major.created_date }}</p>
+    	<p>Created by:{{ major.user }}</p>
+    	<p>Date:{{ major.created_date }}</p>
   	</span>
   </div>
 </div>
-	<div class="comment">
-		<form method="post">
-	      {% csrf_token %}
-	      <h3>Comments</h3>
-	        {% for Comment in Comments %}
-	      <div class="commentBox box">
-	           <p class="commentUser">From {{ Comment.user }} on {{ Comment.created_date }} </p>
-	           <p>" {{ Comment }} " </p>
-	      </div>
-	      	{% endfor %}
-	      <h3>Send Comment</h3>
-	      <div class="argument">
-	      	{% if user.is_authenticated %}
-				<textarea name="text" cols="40" rows="10" required id="id_text"></textarea></br>
-	   			<button  class="btnSubmit" type="submit"> Submit </button>
-	   		{% else %}
-	   			<p class="loginWarning">You need to login in order to comment</p>
-	   		{% endif %}
-	    </form>
-    </div>
+<div class="comment">
+  <form method="post">
+    {% csrf_token %}
+    <h3>Comments</h3>
+    {% for Comment in Comments %}
+      <div class="commentBox box">
+        <p class="commentUser">From {{ Comment.user }} on {{ Comment.created_date }} </p>
+        <p>" {{ Comment }} " </p>
+      </div>
+    {% endfor %}
+    <h3>Send Comment</h3>
+    <div class="argument">
+      {% if user.is_authenticated %}
+        <textarea name="text" cols="40" rows="10" required id="id_text"></textarea>
+        </br>
+        <button  class="btnSubmit" type="submit"> Submit </button>
+      {% else %}
+        <p class="loginWarning">You need to login in order to comment</p>
+      {% endif %}
+  </form>
+</div>
 {% endblock %}

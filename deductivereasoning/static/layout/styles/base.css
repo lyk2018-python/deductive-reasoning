@@ -158,16 +158,20 @@ a {
   display: inline-block;
   text-decoration: none;
 }
+
 .comment h3{
   font-size: 25px;
   font-weight: 600;
   margin-bottom: 15px;
   color: green;
 }
+
 .commentBox{
   background-color: #CCF59A;
   font-weight: normal;
+  word-wrap: break-word;
 }
+
 .box .commentUser{
   text-align: right;
   font-weight: 600;
