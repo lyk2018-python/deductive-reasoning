@@ -15,6 +15,13 @@
         <input class="changeBox" type="password" name="password" required id="id_password">
       </p>
       <button type="submit" class="btnSubmit">Login</button>
+      {% if form.errors %}
+          {% for error in form.non_field_errors %}
+              <div class="alert">
+                  <strong>{{ error|escape }}</strong>
+              </div>
+          {% endfor %}
+      {% endif %}
     </div>
   </form>
 </div>
