@@ -18,4 +18,4 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    return render(request, 'accounts/dashboard.html', {'title': 'Profile Page'})
