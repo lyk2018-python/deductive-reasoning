@@ -6,13 +6,13 @@
       {% csrf_token %}
       <div class="argument">
         <p>Major argument:<br/></p>
-        <select class="selectBox" onchange="decideInvalidArgs()" name="is_universal_major" id="id_is_universal_major">
+        <select class="selectBox" onchange="onInputTextValueChange()" name="is_universal_major" id="id_is_universal_major">
           <option value="True">All</option>
           <option value="False">Some</option>
         </select>
         <input type="text" class="submitText" onchange="getElements()" name="subject_major" maxlength="255" required id="id_subject_major" />
 
-        <select class="selectBox" onchange="decideInvalidArgs()" name="is_affirmative_major" id="id_is_affirmative_major">
+        <select class="selectBox" onchange="onInputTextValueChange()" name="is_affirmative_major" id="id_is_affirmative_major">
           <option value="True">Are</option>
           <option value="False">Are not</option>
         </select>
@@ -21,13 +21,13 @@
 
       <div class="argument">
         <p>Minor argument:<br/></p>
-        <select class="selectBox" onchange="decideInvalidArgs()" name="is_universal_minor" id="id_is_universal_minor">
+        <select class="selectBox" onchange="onInputTextValueChange()" name="is_universal_minor" id="id_is_universal_minor">
           <option value="True">All</option>
           <option value="False">Some</option>
         </select>
         <input type="text" class="submitText" onchange="getElements()" name="subject_minor" maxlength="255" required id="id_subject_minor" />
 
-        <select class="selectBox" onchange="decideInvalidArgs()" name="is_affirmative_minor" id="id_is_affirmative_minor">
+        <select class="selectBox" onchange="onInputTextValueChange()" name="is_affirmative_minor" id="id_is_affirmative_minor">
           <option value="True">Are</option>
           <option value="False">Are not</option>
         </select>
@@ -36,14 +36,14 @@
 
       <div class="argument">
         <p>Conclusion:<br/></p>
-        <select class="selectBox" onchange="decideInvalidArgs()" name="is_universal_conclusion" id="id_is_universal_conclusion">
+        <select class="selectBox" onchange="onInputTextValueChange()" name="is_universal_conclusion" id="id_is_universal_conclusion">
           <option value="True">All</option>
           <option value="False">Some</option>
         </select>
         <select class="changeBox" name="subject_conclusion" id="id_subject_conclusion">
         </select>
 
-        <select class="selectBox" onchange="decideInvalidArgs()" name="is_affirmative_conclusion" id="id_is_affirmative_conclusion">
+        <select class="selectBox" onchange="onInputTextValueChange()" name="is_affirmative_conclusion" id="id_is_affirmative_conclusion">
           <option value="True">Are</option>
           <option value="False">Are not</option>
         </select>
@@ -60,17 +60,58 @@
 
   <script type="text/javascript">
   function onInputTextValueChange(){
+    //Boolean Python
+    var is_universal_major = document.getElementById('id_is_universal_major').value;
+    var is_affirmative_major = document.getElementById('id_is_affirmative_major').value;
+    var is_universal_minor = document.getElementById('id_is_universal_minor').value;
+    var is_affirmative_minor = document.getElementById('id_is_affirmative_minor').value;
+    var is_universal_conclusion = document.getElementById('id_is_universal_conclusion').value;
+    var is_affirmative_conclusion = document.getElementById('id_is_affirmative_conclusion').value;
+
+    //Boolean Js
+    var is_universal_majorJS = convertToJSBoolean(is_universal_major);
+    var is_affirmative_majorJS = convertToJSBoolean(is_affirmative_major);
+    var is_universal_minorJS = convertToJSBoolean(is_universal_minor);
+    var is_affirmative_minorJS = convertToJSBoolean(is_affirmative_minor);
+    var is_universal_conclusionJS = convertToJSBoolean(is_universal_conclusion);
+    var is_affirmative_conclusionJS = convertToJSBoolean(is_affirmative_conclusion);
+    
+    //Conclusions
+    var majorConclusionType = getConclusionType(is_universal_majorJS, is_affirmative_majorJS);
+    var minorConclusionType = getConclusionType(is_universal_minorJS, is_affirmative_minorJS);
+    var conclusionConclusionType = getConclusionType(is_universal_conclusionJS, is_affirmative_conclusionJS);
+    var isValid = isConclusionValid(majorConclusionType, minorConclusionType, conclusionConclusionType);
+
+    //Textfields
     var major_subject = document.getElementById('id_subject_major').value;
     var major_predicate = document.getElementById('id_predicate_major').value;
     var minor_subject = document.getElementById('id_subject_minor').value;
     var minor_predicate = document.getElementById('id_predicate_minor').value;
+
+    //Decide whether button should be disabled or not according to the inputs
     if (major_subject == "" || major_predicate == "" || minor_subject == "" || minor_predicate == "") {
       document.getElementById("buttonSubmit").disabled = true;
+      if (!isValid) {
+        document.getElementById("invalidArg").style.display = '';
+        document.getElementById("buttonSubmit").disabled = true;
+      }
+      else{
+        document.getElementById("invalidArg").style.display = 'none';
+      }
     }
     else{
       document.getElementById("buttonSubmit").disabled = false;
+      if (isValid) {
+        document.getElementById("invalidArg").style.display = 'none';
+      }
+      else{
+        document.getElementById("invalidArg").style.display = '';
+        document.getElementById("buttonSubmit").disabled = true;
+      }
     }
   }
+
+  //Convert method
   function convertToJSBoolean(boolToConvert){
     if (boolToConvert == 'True'){
       return true;
@@ -79,32 +120,8 @@
       return false;
     }
   }
-  function decideInvalidArgs(){
-    var is_universal_major = document.getElementById('id_is_universal_major').value;
-    var is_affirmative_major = document.getElementById('id_is_affirmative_major').value;
-    var is_universal_minor = document.getElementById('id_is_universal_minor').value;
-    var is_affirmative_minor = document.getElementById('id_is_affirmative_minor').value;
-    var is_universal_conclusion = document.getElementById('id_is_universal_conclusion').value;
-    var is_affirmative_conclusion = document.getElementById('id_is_affirmative_conclusion').value;
-    var is_universal_majorJS = convertToJSBoolean(is_universal_major);
-    var is_affirmative_majorJS = convertToJSBoolean(is_affirmative_major);
-    var is_universal_minorJS = convertToJSBoolean(is_universal_minor);
-    var is_affirmative_minorJS = convertToJSBoolean(is_affirmative_minor);
-    var is_universal_conclusionJS = convertToJSBoolean(is_universal_conclusion);
-    var is_affirmative_conclusionJS = convertToJSBoolean(is_affirmative_conclusion);
-    var majorConclusionType = getConclusionType(is_universal_majorJS, is_affirmative_majorJS);
-    var minorConclusionType = getConclusionType(is_universal_minorJS, is_affirmative_minorJS);
-    var conclusionConclusionType = getConclusionType(is_universal_conclusionJS, is_affirmative_conclusionJS);
-    var isValid = isConclusionValid(majorConclusionType, minorConclusionType, conclusionConclusionType);
-    if (isValid) {
-      document.getElementById("invalidArg").style.display = 'none';
-      document.getElementById("buttonSubmit").disabled = false;
-    }
-    else{
-      document.getElementById("invalidArg").style.display = '';
-      document.getElementById("buttonSubmit").disabled = true;
-    }
-  }
+
+  //Decision table
   function isConclusionValid(major, minor, conclusion){
     if (major == "A" && minor == "A" && conclusion == "A") {
       return true;
@@ -154,6 +171,8 @@
       return "O";
     }
   }
+
+  //Put elements in SelectOneMenus
   function getElements(){
     var subject_conclusion_select_items = document.getElementById('id_subject_conclusion');
     var predicate_conclusion_select_items = document.getElementById('id_predicate_conclusion');
