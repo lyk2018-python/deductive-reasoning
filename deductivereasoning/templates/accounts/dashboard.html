@@ -13,8 +13,10 @@
     {% endif %}
     Username: {{ user.username }}
     <br>
-    User Email: {{ user.email }}
-    <br>
+    {% if user.email %}
+      User Email: {{ user.email }}
+      <br>
+    {% endif %}
     Last Login: {{ user.last_login }}
     <br>
     Date Joined: {{ user.date_joined }}
