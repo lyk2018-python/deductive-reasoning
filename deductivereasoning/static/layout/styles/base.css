@@ -288,3 +288,7 @@ a {
   color: green;
   font-weight: 600;
 }
+
+.welcome {
+  font-size: 30px;
+}

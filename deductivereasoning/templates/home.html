@@ -5,12 +5,13 @@
 {% block content %}
 
 {% for conclusion in conclusions %}
-	<div class="box">
+	<div class="box homeBox">
 		<p>
 			<a href="{% url 'proposition_detail' conclusion.id %}">
-				{{ conclusion }}</a>
+				{{ conclusion }}
+			</a>
 		</p>
-  	</div>
+  </div>
 	<br/>
 {% endfor %}
 {% endblock %}
