@@ -52,6 +52,7 @@
       </div>
 
       <div id="invalidArg" class="invalidArgError submitWarning" style="display:none;">CANNOT CREATE INVALID ARGUMENT</div>
+      <div id="conclusionName" class="conclusionName"></div>
       <button type="submit" disabled class="btnSubmit" id="buttonSubmit" onclick="this.form.submit();this.disabled=true;" >Submit</button>
       </form>
     {% else %}
@@ -75,7 +76,7 @@
     var is_affirmative_minorJS = convertToJSBoolean(is_affirmative_minor);
     var is_universal_conclusionJS = convertToJSBoolean(is_universal_conclusion);
     var is_affirmative_conclusionJS = convertToJSBoolean(is_affirmative_conclusion);
-    
+
     //Conclusions
     var majorConclusionType = getConclusionType(is_universal_majorJS, is_affirmative_majorJS);
     var minorConclusionType = getConclusionType(is_universal_minorJS, is_affirmative_minorJS);
@@ -123,34 +124,45 @@
 
   //Decision table
   function isConclusionValid(major, minor, conclusion){
+    var conclusionName = "";
     if (major == "A" && minor == "A" && conclusion == "A") {
+      document.getElementById("conclusionName").innerHTML = "Barbara";
       return true;
     }
     else if (major == "E" && minor == "A" && conclusion == "E"){
+      document.getElementById("conclusionName").innerHTML = "Cesare";
       return true;
     }
     else if (major == "A" && minor == "I" && conclusion == "I"){
+      document.getElementById("conclusionName").innerHTML = "Datisi";
       return true;
     }
     else if (major == "E" && minor == "I" && conclusion == "O"){
+      document.getElementById("conclusionName").innerHTML = "Ferison";
       return true;
     }
     else if (major == "A" && minor == "E" && conclusion == "O"){
+      document.getElementById("conclusionName").innerHTML = "Camestros	";
       return true;
     }
     else if (major == "A" && minor == "O" && conclusion == "O"){
+      document.getElementById("conclusionName").innerHTML = "Baroco";
       return true;
     }
     else if (major == "O" && minor == "A" && conclusion == "O"){
+      document.getElementById("conclusionName").innerHTML = "Bocardo";
       return true;
     }
     else if (major == "E" && minor == "A" && conclusion == "O"){
+      document.getElementById("conclusionName").innerHTML = "Celaront";
       return true;
     }
     else if (major == "A" && minor == "E" && conclusion == "E"){
+      document.getElementById("conclusionName").innerHTML = "Calemes";
       return true;
     }
     else if (major == "I" && minor == "A" && conclusion == "I"){
+      document.getElementById("conclusionName").innerHTML = "Disamis";
       return true;
     }
     else{
