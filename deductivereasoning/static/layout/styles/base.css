@@ -263,13 +263,13 @@ a {
   margin: 15px 0px 5px 15px;
 }
 
-.loginWarning{
+.loginWarning {
   color: red !important;
   font-size: 14px;
   font-weight: bold;
 }
 
-.invalidArgError{
+.invalidArgError {
   background-color: #ff002d;
   color: #F2F2F2;
   text-align: center;
@@ -292,7 +292,8 @@ a {
 .welcome {
   font-size: 30px;
 }
-.alert{
+
+.alert {
   background-color: #ff002d;
   color: #F2F2F2;
   text-align: center;
