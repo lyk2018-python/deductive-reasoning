@@ -29,7 +29,7 @@
     <h3>Send Comment</h3>
     <div class="argument">
       {% if user.is_authenticated %}
-        <textarea name="text" cols="40" rows="10" required id="id_text"></textarea>
+        <textarea name="text" cols="61" rows="7" style="resize: none;" required id="id_text"></textarea>
         </br>
         <button  class="btnSubmit" type="submit"> Submit </button>
       {% else %}
