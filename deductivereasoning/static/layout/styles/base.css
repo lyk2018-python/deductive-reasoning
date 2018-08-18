@@ -36,16 +36,24 @@ a {
 
 .header ul {
   float: right;
-  margin-top: 24px;
+  margin-top: 36px;
 }
 
 .header ul li {
   display: inline-block;
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
-.header ul li:first-child {
-  margin-left: 0;
+.header ul li a {
+  font-size: 24px;
+  font-weight: 600;
+  border-bottom: 6px solid #F3FD83;
+  color: #333646;
+  text-decoration: none;
+}
+
+.header ul li a:hover {
+  border-bottom: 6px solid yellow;
 }
 
 .nav {
