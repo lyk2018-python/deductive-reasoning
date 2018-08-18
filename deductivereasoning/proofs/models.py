@@ -57,6 +57,7 @@ class Proof(models.Model):
         related_name='conclusion',
         on_delete=models.CASCADE,
     )
+    form_type = models.CharField(max_length=15)
 
     def __str__(self):
         return  (universal(self.major.is_universal)+ " " + self.major.subject + " " + affirmative(self.major.is_affirmative) + " " + self.major.predicate + "___"

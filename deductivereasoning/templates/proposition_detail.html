@@ -4,6 +4,7 @@
 {% block content %}
 <div class="content">
   <div class="propDetail">
+    <div style="font-family: Helvetica; float: right; color: green;" >Conclusion Form: "{{ proof.form_type }}"</div>
   	<p>{{ major }}</p>
  	  <p>{{ minor }}</p>
   	<p>{{ conclusion }}</p>
@@ -16,13 +17,15 @@
 <div class="comment">
   <form method="post">
     {% csrf_token %}
-    <h3>Comments</h3>
-    {% for Comment in Comments %}
-      <div class="commentBox box">
-        <p class="commentUser">From {{ Comment.user }} on {{ Comment.created_date }} </p>
-        <p>" {{ Comment }} " </p>
-      </div>
-    {% endfor %}
+    {% if Comments %}
+      <h3>Comments</h3>
+      {% for Comment in Comments %}
+        <div class="commentBox box">
+          <p class="commentUser">From {{ Comment.user }} on {{ Comment.created_date }} </p>
+          <p>" {{ Comment }} " </p>
+        </div>
+      {% endfor %}
+    {% endif %}
     <h3>Send Comment</h3>
     <div class="argument">
       {% if user.is_authenticated %}

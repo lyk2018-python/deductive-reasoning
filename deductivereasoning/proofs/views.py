@@ -33,6 +33,7 @@ def proposition_detail(request, id):
 			comment.save()
 	Comments = Comment.objects.filter(modelObject=proofs)
 	return render(request, 'proposition_detail.html', {
+		'proof': proofs,
 		'major': major,
 		'minor': minor,
 		'conclusion': conclusion,
@@ -48,6 +49,10 @@ def submit(request):
 	if request.method == "POST":
 		form = MajorSubmissionForm(request.POST)
 		if form.is_valid():
+			major_type = get_proposition_type(form.cleaned_data['is_universal_major'], form.cleaned_data['is_affirmative_major'])
+			minor_type = get_proposition_type(form.cleaned_data['is_universal_conclusion'], form.cleaned_data['is_affirmative_conclusion'])
+			conclusion_type = get_proposition_type(form.cleaned_data['is_universal_conclusion'], form.cleaned_data['is_affirmative_conclusion'])
+			type_as_string = conclusion_name(major_type, minor_type, conclusion_type)
 			major = Proposition.objects.create(
 				is_universal=form.cleaned_data['is_universal_major'],
 				subject=form.cleaned_data['subject_major'],
@@ -75,8 +80,43 @@ def submit(request):
 			Proof.objects.create(
 				major=major,
 				minor=minor,
-				conclusion=conclusion
+				conclusion=conclusion,
+				form_type=type_as_string
 			)
 			return redirect(reverse("proposition_detail", args=[conclusion.id]))
 
 	return render(request ,"submit.html", {'form': form})
+
+def get_proposition_type(universal, affirmative):
+	if universal == 'True' and affirmative == 'True':
+		return "A"
+	elif universal == 'True' and affirmative == 'False':
+		return "I"
+	elif universal == 'False' and affirmative == 'True':
+		return "E"
+	else:
+		return "O"
+
+def conclusion_name(major, minor, conclusion):
+	if major == "A" and minor == "A" and conclusion == "A" :
+		return "Barbara"
+	elif major == "E" and minor == "A" and conclusion == "E":
+		return "Cesare"
+	elif major == "A" and minor == "I" and conclusion == "I":
+		return "Datisi"
+	elif major == "E" and minor == "I" and conclusion == "O":
+		return "Ferison"
+	elif major == "A" and minor == "E" and conclusion == "O":
+		return "Camestros"
+	elif major == "A" and minor == "O" and conclusion == "O":
+		return "Baroco"
+	elif major == "O" and minor == "A" and conclusion == "O":
+		return "Bocardo"
+	elif major == "E" and minor == "A" and conclusion == "O":
+		return "Celaront"
+	elif major == "A" and minor == "E" and conclusion == "E":
+		return "Calemes"
+	elif major == "I" and minor == "A" and conclusion == "I":
+		return "Disamis"
+	else:
+		return "THIS CANT RUN"

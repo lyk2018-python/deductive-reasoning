@@ -303,3 +303,12 @@ a {
   letter-spacing: 0.5px;
   margin-bottom: 5px;
 }
+
+.propDetail p{
+  font-family: Helvetica;
+  color: rgb(255, 106, 96);
+}
+
+.createdBy p {
+  color: black;
+}
