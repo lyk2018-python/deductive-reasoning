@@ -27,17 +27,17 @@ __Proje için klasör açılır ardından;__
 ## *local_settings.py* eklenmesi
 __Proje clone landıktan sonra *settings.py* ın bulunduğu dizine (*../deductive-reasoning/deductivereasoning*) *local_settings.py* dosyası oluşturulur. Ardından içerisine şu kod bloğu eklenir__
 ```python
-	SECRET_KEY = 'SECRET-KEY-BURAYA'
-	ALLOWED_HOSTS = []
-	DEBUG = True
-	import os
-	BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-	DATABASES = {
-	    'default': {
-	        'ENGINE': 'django.db.backends.sqlite3',
-	        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-	   }
-	}
+SECRET_KEY = 'SECRET-KEY-BURAYA'
+ALLOWED_HOSTS = []
+DEBUG = True
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   }
+}
 ```
 __Daha sonra *SECRET-KEY-BURAYA* yazan alana şu linkten alınan Django Secret Keyi tırnak içerisine eklenir;__
 [Django Secret Key Generator](https://www.miniwebtool.com/django-secret-key-generator/)
