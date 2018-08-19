@@ -6,17 +6,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block scripts %}
     {% endblock %}
     <title>{% block title %} Default Title {% endblock %}</title>
 
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="container">
+    <div id="overlay"></div>
       <div class="header">
         <a href="{% url 'home' %}">
           <img src="{% static 'logo.png' %}">
         </a>
+        <div class="hamburger" id="hamburger">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
         <ul>
           <li>
             <a href="">
@@ -31,6 +38,47 @@
         </ul>
         <div class="clear"></div>
       </div>
+    <div class="sidebar" id="sidebar">
+      <ul>
+          <li>
+            <a class="active" href="{% url 'home' %}">Home</a>
+          </li>
+          <li>
+            <a href="{% url 'about' %}">About</a>
+          </li>
+            {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'submit' %}">Submit</a>
+          </li>
+           <li>
+            <a href="{% url 'logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li>
+            <a href="{% url 'signup' %}">Signup</a>
+           <li>
+            <a href="{% url 'login' %}">Login</a>
+          </li>
+          {% endif %}
+          <li>
+            {% if user.is_authenticated %}
+              <a href="{% url 'dashboard' %}"> {{ user.username }} </a>
+            {% endif %}
+          </li>
+          <ul id="sidelang">
+            <li style="display: inline-block; margin-left: 28px">
+              <a href="">
+                tr
+              </a>
+            </li>
+            <li style="display: inline-block; border-left: 2px solid gray">
+              <a href="">
+                en
+              </a>
+            </li>
+          </ul>
+        </ul>
+    </div>
     <div class="nav">
         <ul>
           <li>
@@ -70,6 +118,30 @@
     <div class="footer">
       <p>A tool for deductive reasoning. <a href="https://github.com/lyk2018-python/deductive-reasoning" target="_blank">Support</a> us on github.</p>
     </div>
-  </div>
+  <script>
+    function on() {
+      document.getElementById("sidebar").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function off() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("sidebar").style.display = "none";
+    }
+
+    document.getElementById('hamburger').addEventListener(
+      'click',
+      function () {
+        on();
+      }
+    );
+
+    document.getElementById('overlay').addEventListener(
+      'click',
+      function () {
+        off();
+      }
+    );
+  </script>
 </body>
 </html>
