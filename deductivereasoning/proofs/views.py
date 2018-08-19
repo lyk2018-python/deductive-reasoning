@@ -50,9 +50,19 @@ def submit(request):
 		form = MajorSubmissionForm(request.POST)
 		if form.is_valid():
 			major_type = get_proposition_type(form.cleaned_data['is_universal_major'], form.cleaned_data['is_affirmative_major'])
-			minor_type = get_proposition_type(form.cleaned_data['is_universal_conclusion'], form.cleaned_data['is_affirmative_conclusion'])
+			minor_type = get_proposition_type(form.cleaned_data['is_universal_minor'], form.cleaned_data['is_affirmative_minor'])
 			conclusion_type = get_proposition_type(form.cleaned_data['is_universal_conclusion'], form.cleaned_data['is_affirmative_conclusion'])
 			type_as_string = conclusion_name(major_type, minor_type, conclusion_type)
+			error = ""
+			if type_as_string == 'NONE':
+				error = error + "Invalid arg form: \"None\", "
+			if not form.cleaned_data['subject_major'] or not form.cleaned_data['predicate_major'] or not form.cleaned_data['subject_minor'] or not form.cleaned_data['predicate_minor'] or not form.cleaned_data['subject_conclusion'] or not form.cleaned_data['predicate_conclusion']:
+				error = error + "Please fill in the required fields."
+			if error:
+				return render(request ,"submit.html", {
+						'form': form,
+						'error': error
+						})
 			major = Proposition.objects.create(
 				is_universal=form.cleaned_data['is_universal_major'],
 				subject=form.cleaned_data['subject_major'],
@@ -119,4 +129,4 @@ def conclusion_name(major, minor, conclusion):
 	elif major == "I" and minor == "A" and conclusion == "I":
 		return "Disamis"
 	else:
-		return "THIS CANT RUN"
+		return "NONE"

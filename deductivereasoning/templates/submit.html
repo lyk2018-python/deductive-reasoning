@@ -51,6 +51,7 @@
         </select>
       </div>
 
+      <div id="errorForPythonCheck" class="invalidArgError submitWarning" style="display:none;">{{ error }}</div>
       <div id="invalidArg" class="invalidArgError submitWarning" style="display:none;">CANNOT CREATE INVALID ARGUMENT</div>
       <div id="conclusionName" style="font-family: Helvetica; padding: 10px; float: right; color: #333646;"></div>
       <button type="submit" disabled class="btnSubmit" id="buttonSubmit" onclick="this.form.submit();this.disabled=true;" >Submit</button>
@@ -60,6 +61,16 @@
     {% endif %}
 
   <script type="text/javascript">
+  window.onload = showErrorDiv;
+  function showErrorDiv(){
+    var error = document.getElementById('errorForPythonCheck').innerHTML;
+    if(error==''){
+      document.getElementById('errorForPythonCheck').style.display = 'none';
+    }
+    else{
+      document.getElementById('errorForPythonCheck').style.display = '';
+    }
+  }
   function onInputTextValueChange(){
     //Boolean Python
     var is_universal_major = document.getElementById('id_is_universal_major').value;
