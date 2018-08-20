@@ -9,7 +9,7 @@ def home(request):
 	concobj = []
 	conclusions = Proof.objects.all()
 	for obj in conclusions:
-		concobj.append(obj.conclusion)
+		concobj.insert(0, obj.conclusion)
 	return render(request, 'home.html', {
 		'title': 'Tümden Gelim',
 		'conclusions': concobj,

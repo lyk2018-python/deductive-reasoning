@@ -25,7 +25,7 @@ __Proje için klasör açılır ardından;__
 	git clone https://github.com/lyk2018-python/deductive-reasoning.git
 
 ## *local_settings.py* eklenmesi
-__Proje clone landıktan sonra *settings.py* ın bulunduğu dizine (*../deductive-reasoning/deductivereasoning*) *local_settings.py* dosyası oluşturulur. Ardından içerisine şu kod bloğu eklenir__
+__Proje clone landıktan sonra *settings.py* ın bulunduğu dizine (*../deductive-reasoning/deductivereasoning/deductivereasoning*) *local_settings.py* dosyası oluşturulur. Ardından içerisine şu kod bloğu eklenir__
 ```python
 SECRET_KEY = 'SECRET-KEY-BURAYA'
 ALLOWED_HOSTS = []
@@ -40,6 +40,7 @@ DATABASES = {
 }
 ```
 __Daha sonra *SECRET-KEY-BURAYA* yazan alana şu linkten alınan Django Secret Keyi tırnak içerisine eklenir;__
+
 [Django Secret Key Generator](https://www.miniwebtool.com/django-secret-key-generator/)
 
 ## Database İşlemleri

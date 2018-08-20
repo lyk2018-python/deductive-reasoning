@@ -11,7 +11,13 @@
 				{{ conclusion }}
 			</a>
 		</p>
-  </div>
+		<a href="{% url 'proposition_detail' conclusion.id %}">
+			<span class="createdBy">
+		  		<p>{{ conclusion.user }}</p>
+		  		<p>{{ conclusion.created_date }}</p>
+			</span>
+		</a>
+	</div>
 	<br/>
 {% endfor %}
 {% endblock %}
