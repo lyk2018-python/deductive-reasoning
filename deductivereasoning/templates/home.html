@@ -11,7 +11,7 @@
 				{{ conclusion }}
 			</a>
 		</p>
-		<a href="{% url 'proposition_detail' conclusion.id %}">
+		<a href="{% url 'profile' conclusion.user.username %}">
 			<span class="createdBy">
 		  		<p>{{ conclusion.user }}</p>
 		  		<p>{{ conclusion.created_date }}</p>

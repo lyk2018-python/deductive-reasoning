@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 
 def signup(request):
@@ -16,6 +17,12 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+def profile(request, username):
+    user = User.objects.get(username=username)
+    return render(request, 'accounts/profile.html', {
+        'user': user,
+    })
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html', {'title': 'Profile Page'})
