@@ -6,11 +6,33 @@
   <form method="post" class="box">
     {% csrf_token %}
     <div class="argument">
-	    <p>
+      {% if messages %}
+                  <ul>
+                      {% for message in messages %}
+                      <li>{{ message }}</li>
+                      {% endfor %}
+                  </ul>
+      {% endif %}
+      <p>
+        <label for="id_first_name">First Name:</label>
+        <input class="changeBox" type="text" name="first_name" maxlength="150" autofocus required id="id_first_name">
+        </br>
+      </p>      
+      <p>
+        <label for="id_last_name">Last Name:</label>
+        <input class="changeBox" type="text" name="last_name" maxlength="150" autofocus required id="id_last_name">
+        </br>
+      </p>
+      <p>
         <label for="id_username">Username:</label>
-        <input class="changeBox" type="text" name="username" maxlength="150" autofocus required id="id_username">
+        <input class="changeBox" type="text" name="username" maxlength="150" minlength="4" autofocus required id="id_username">
         </br>
         <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+      </p>
+       <p>
+        <label for="id_email">Email:</label>
+        <input class="changeBox" type="email" name="email" autofocus required id="id_email">
+        </br>
       </p>
 		  <p>
         <label for="id_password1">Password:</label>
@@ -29,7 +51,7 @@
         <span class="helptext">Enter the same password as before, for verification.</span>
       </p>
 	  </div>
-    <button type="submit" class="btnSubmit">Sign Up</button>
+    <button type="submit" name="submit" class="btnSubmit">Sign Up</button>
     {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}

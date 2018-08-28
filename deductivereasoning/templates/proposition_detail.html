@@ -8,10 +8,12 @@
   	<p>{{ major }}</p>
  	  <p>{{ minor }}</p>
   	<p>{{ conclusion }}</p>
-  	<span class="createdBy">
-    	<p>Created by:{{ major.user }}</p>
-    	<p>Date:{{ major.created_date }}</p>
-  	</span>
+    <a href="{% url 'profile' conclusion.user.username %}">
+  	 <span class="createdBy">
+      	<p>Created by:{{ major.user }}</p>
+      	<p>Date:{{ major.created_date }}</p>
+  	 </span>
+    </a>
   </div>
 </div>
 <div class="comment">
