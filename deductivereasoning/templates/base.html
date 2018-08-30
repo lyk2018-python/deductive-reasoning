@@ -7,8 +7,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block scripts %}
-    {% endblock %}
     <title>{% block title %} Default Title {% endblock %}</title>
 
 </head>
@@ -143,5 +141,7 @@
       }
     );
   </script>
+  {% block scripts %}
+  {% endblock %}
 </body>
 </html>
