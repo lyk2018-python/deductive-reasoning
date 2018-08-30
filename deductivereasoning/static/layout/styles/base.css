@@ -508,3 +508,15 @@ a {
   }
 }
 
+.pagination {
+  display: inline-block;
+}
+.pagination .step-links a {
+  font-weight: bold;
+  padding: 8px 16px;
+  background-color: #7ff5b7;
+  color: black;
+}
+.current{
+    font-weight: bold;
+}

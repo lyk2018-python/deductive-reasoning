@@ -4,15 +4,20 @@ from .forms import MajorSubmissionForm
 from django.urls import reverse
 from comments.forms import CommentForm
 from comments.models import Comment
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+
 
 def home(request):
 	concobj = []
 	conclusions = Proof.objects.all()
 	for obj in conclusions:
 		concobj.insert(0, obj.conclusion)
+	paginator = Paginator(concobj,10)
+	page = request.GET.get('page')
+	concPaginationObjs = paginator.get_page(page)
 	return render(request, 'home.html', {
 		'title': 'Tümden Gelim',
-		'conclusions': concobj,
+		'conclusions': concPaginationObjs,
 	})
 
 def about(request):
@@ -56,7 +61,9 @@ def submit(request):
 			error = ""
 			if type_as_string == 'NONE':
 				error = error + "Invalid arg form: \"None\", "
-			if not form.cleaned_data['subject_major'] or not form.cleaned_data['predicate_major'] or not form.cleaned_data['subject_minor'] or not form.cleaned_data['predicate_minor'] or not form.cleaned_data['subject_conclusion'] or not form.cleaned_data['predicate_conclusion']:
+			if (not form.cleaned_data['subject_major'] or not form.cleaned_data['predicate_major'] or not
+				form.cleaned_data['subject_minor'] or not form.cleaned_data['predicate_minor'] or not 
+				form.cleaned_data['subject_conclusion'] or not form.cleaned_data['predicate_conclusion']):
 				error = error + "Please fill in the required fields."
 			if error:
 				return render(request ,"submit.html", {

@@ -3,7 +3,23 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+<div class="pagination" style="margin-bottom: 20px;">
+    <span class="step-links">
+        {% if conclusions.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ conclusions.previous_page_number }}">previous</a>
+        {% endif %}
 
+        <span class="current">
+            Page {{ conclusions.number }} of {{ conclusions.paginator.num_pages }}.
+        </span>
+
+        {% if conclusions.has_next %}
+            <a href="?page={{ conclusions.next_page_number }}">next</a>
+            <a href="?page={{ conclusions.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 {% for conclusion in conclusions %}
 	<div class="box homeBox">
 		<p>
@@ -20,4 +36,21 @@
 	</div>
 	<br/>
 {% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if conclusions.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ conclusions.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ conclusions.number }} of {{ conclusions.paginator.num_pages }}.
+        </span>
+
+        {% if conclusions.has_next %}
+            <a href="?page={{ conclusions.next_page_number }}">next</a>
+            <a href="?page={{ conclusions.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 {% endblock %}
