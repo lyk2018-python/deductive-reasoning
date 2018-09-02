@@ -470,6 +470,17 @@ a {
   margin-top: 14px;
   font-size: 18px;
   }
+  .pagination{
+    width: 330px;
+  }
+  .pagination .step-links a {
+    padding: 8px 10px !important;
+    font-size: 13px;
+  }
+  .current{
+    font-weight: bold;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 378px) {
