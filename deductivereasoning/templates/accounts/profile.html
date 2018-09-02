@@ -17,6 +17,10 @@
     User Email: {{ user.email }}
     <br>
   {% endif %}
+  {% if numOfConcs %}
+    Number of conclusions created by user: {{ numOfConcs }}
+    <br>
+  {% endif %}
   Last Login: {{ user.last_login }}
   <br>
   Date Joined: {{ user.date_joined }}
